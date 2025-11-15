@@ -1,0 +1,27 @@
+{
+  "name": "tempslackbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielC11038/TempSlackBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DanielC11038/TempSlackBot/issues"
+  },
+  "homepage": "https://github.com/DanielC11038/TempSlackBot#readme",
+  "dependencies": {
+    "@slack/bolt": "^4.4.0",
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.2"
+  }
+}
