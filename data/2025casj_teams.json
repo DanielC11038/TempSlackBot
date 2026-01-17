@@ -1,0 +1,335 @@
+[
+  {
+    "city": "Woodside",
+    "country": "USA",
+    "key": "frc100",
+    "name": "Salesky.dev/Viasat/Broadcom/Gene Haas Foundation/Boeing/Pacific Gas and Electric/Lockheed Martin/Alan Steel and Supply Company/Menlo Park Barber Shop/Intuitive Foundation/PG&E/Apple&Woodside High School",
+    "nickname": "The Wildhats",
+    "state_prov": "California",
+    "team_number": 100
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc10059",
+    "name": "Oak Grove High School",
+    "nickname": "Tech On Titans",
+    "state_prov": "California",
+    "team_number": 10059
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc10252",
+    "name": "Stratford Preparatory Blackford",
+    "nickname": "Mecha Lions",
+    "state_prov": "California",
+    "team_number": 10252
+  },
+  {
+    "city": "Milpitas",
+    "country": "USA",
+    "key": "frc10372",
+    "name": "Milpitas High",
+    "nickname": "THE ANTS",
+    "state_prov": "California",
+    "team_number": 10372
+  },
+  {
+    "city": "Union City",
+    "country": "USA",
+    "key": "frc10644",
+    "name": "Family/Community",
+    "nickname": "West Coast Warriors",
+    "state_prov": "California",
+    "team_number": 10644
+  },
+  {
+    "city": "Madera",
+    "country": "USA",
+    "key": "frc1323",
+    "name": "Madera Unified School District/WestCoast Products/JBT FoodTech/PG&E/Evening Lions/Madera Fair/Kiwani's Madera/BK Lighting/BOEING&Madera High School",
+    "nickname": "MadTown Robotics",
+    "state_prov": "California",
+    "team_number": 1323
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc1351",
+    "name": "Archbishop Mitty High School/Google&ARCHBISHOP MITTY HIGH SCHOOL",
+    "nickname": "TKO",
+    "state_prov": "California",
+    "team_number": 1351
+  },
+  {
+    "city": "Palo Alto",
+    "country": "USA",
+    "key": "frc1700",
+    "name": "GGV Capital/Google/IDEO/Crane Technologies/Brin Wojcicki Foundation/SolidWorks/Il Fornaio/Olander&Castilleja School",
+    "nickname": "Gatorbotics",
+    "state_prov": "California",
+    "team_number": 1700
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc1967",
+    "name": "Apple/Mulla & Carrillo Family/Kirkland Family/Intuitive Foundation/BAE/PG&E Dream Maker/ARM Inc/Labonville Family/Santos Family/Nebu Family/Buruganahali Family/Anonymous/Kettering GMI Alumni Association&Notre Dame High School",
+    "nickname": "The Janksters",
+    "state_prov": "California",
+    "team_number": 1967
+  },
+  {
+    "city": "Mountain View",
+    "country": "USA",
+    "key": "frc2367",
+    "name": "Johnson & Johnson MedTech&St Francis High School",
+    "nickname": "Lancer Robotics",
+    "state_prov": "California",
+    "team_number": 2367
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc2489",
+    "name": "Boeing/FIRST NorCal/Playing At Learning&Fremont Unified School District",
+    "nickname": "The Insomniacs",
+    "state_prov": "California",
+    "team_number": 2489
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc2643",
+    "name": "Apple/ARM/Lockheed Martin/Intuitive Surgical, Inc./Solid Works/Starbucks/Nob Hill&Santa Teresa High School",
+    "nickname": "Dark Matter",
+    "state_prov": "California",
+    "team_number": 2643
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc2854",
+    "name": "Apple/Boeing/Lockheed Martin/JP Metal Fab/Luna Sheet Metal/Troop 138 & 168/Dream Maker (PG&E)&Family/Community",
+    "nickname": "The Prototypes",
+    "state_prov": "California",
+    "team_number": 2854
+  },
+  {
+    "city": "San Mateo",
+    "country": "USA",
+    "key": "frc3045",
+    "name": "Apple Inc/Gene Haas Foundation/Google/The Intuitive Foundation&Junipero Serra High School",
+    "nickname": "Gear Gremlins",
+    "state_prov": "California",
+    "team_number": 3045
+  },
+  {
+    "city": "Kailua Kona",
+    "country": "USA",
+    "key": "frc3880",
+    "name": "NASA, BAE Systems, Friends of Hawaii Robotics, Maui Economic Development Board, Ace Hardware, UH Manoa College of Engineering, Thirty Meter Telescope, HELCO, Oceanic Time Warner Cable, ABC Stores, Andy Mark, Robotics Organizing Committee(ROC), Cyanotech,/Society of Women Engineers & Kealakehe High School",
+    "nickname": "Tiki Techs",
+    "state_prov": "Hawaii",
+    "team_number": 3880
+  },
+  {
+    "city": "San Francisco",
+    "country": "USA",
+    "key": "frc4159",
+    "name": "Lowell Alumni Association/Lowell PTSA/San Francisco Machine Works/Pacific Gas & Electric/Intuitive Surgical/Kaplan Wong Family/Gene Haas Foundation/Marjang Architecture&Lowell High School",
+    "nickname": "CardinalBotics",
+    "state_prov": "California",
+    "team_number": 4159
+  },
+  {
+    "city": "San Mateo",
+    "country": "USA",
+    "key": "frc4904",
+    "name": "Autodesk/Altium/Apple/Polymaker/NorCal FIRST/The Nueva School/Friends and Family of Bot-Provoking&Nueva School",
+    "nickname": "Bot-Provoking",
+    "state_prov": "California",
+    "team_number": 4904
+  },
+  {
+    "city": "Hillsborough",
+    "country": "USA",
+    "key": "frc4990",
+    "name": "Crystal Springs Uplands School",
+    "nickname": "Basement Bots",
+    "state_prov": "California",
+    "team_number": 4990
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc5027",
+    "name": "Qualcomm/Intuitive Surgical, Inc/Boston Scientific/Argosy Foundation/Andrew P. Hill High School and East side Union High School District/Monica Scheider and Family/Solidworks/ARM INC&Andrew P Hill High School",
+    "nickname": "Event Horizon (5027)",
+    "state_prov": "California",
+    "team_number": 5027
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc581",
+    "name": "Johnson & Johnson MedTech/Google/UST/Salas O'Brien/John Deere/Apple/Gene Haas Foundation/Raytheon/TE Connectivity/Intuitive Foundation/BAE Systems/PTC/West Coast Products/Fabworks&San Jose High School",
+    "nickname": "Blazing Bulldogs",
+    "state_prov": "California",
+    "team_number": 581
+  },
+  {
+    "city": "Redwood City",
+    "country": "USA",
+    "key": "frc5940",
+    "name": "Apple/Oracle/Johnson & Johnson/Capricorn Investment Group/CGB Enterprises/Comcast/Gene Haas Foundation/Westcoast Products/Intuitive Foundation/Kikkoman/PTC/PG&E/DreamMaker/Costco/Google&Design Tech High School",
+    "nickname": "BREAD",
+    "state_prov": "California",
+    "team_number": 5940
+  },
+  {
+    "city": "Livermore",
+    "country": "USA",
+    "key": "frc6059",
+    "name": "Robot Garden/Aria Technologies/Lawrence Livermore National Laboratory/Duodecima Technologies/SolidWorks/Livermore Rotary Club&Boy Scouts of America&Family/Community",
+    "nickname": "System Overload Robotics",
+    "state_prov": "California",
+    "team_number": 6059
+  },
+  {
+    "city": "Los Altos",
+    "country": "USA",
+    "key": "frc6238",
+    "name": "Christie's International Real Estate Sereno/Gene Haas Foundation/Dream Maker/PG&E/Marvell/4Imprint, One by One/FIRST NorCal & Family/Community",
+    "nickname": "Popcorn Penguins",
+    "state_prov": "California",
+    "team_number": 6238
+  },
+  {
+    "city": "San Francisco",
+    "country": "USA",
+    "key": "frc6418",
+    "name": "Balanstart/Gene Haas Foundation/Google/RTX/Escape From New York Pizza/Ascend/Augment Code/Intuitive Foundation/Industrial Metal Supply Co./PG&E DreamMaker Fund&Family/Community",
+    "nickname": "The Missfits",
+    "state_prov": "California",
+    "team_number": 6418
+  },
+  {
+    "city": "Saratoga",
+    "country": "USA",
+    "key": "frc649",
+    "name": "Qualcomm/MSET Families & Friends/Trial & Error Robotics/Intuitive Surgical/Gorman Group/PG&E/Rotary Club of Saratoga/SolidWorks/Gene Haas Foundation/Google&Saratoga High School",
+    "nickname": "MSET Fish",
+    "state_prov": "California",
+    "team_number": 649
+  },
+  {
+    "city": "Livermore",
+    "country": "USA",
+    "key": "frc6619",
+    "name": "Lawrence Livermore National Laboratory/Livermore Joint Unified School District/Studio Blue Digital Print and Copy/deHaro Contrsruction/Haas/Kaiser Aluminum/Labsmith/Yoga & Somatics/Westec Plastics/Livermore Rotary Club/Livermore Valley Education Foundation/Latta FLoors/PG&E Foundation/a13Systems/Quest Science Center/OshCut&Livermore High School",
+    "nickname": "GravitechX",
+    "state_prov": "California",
+    "team_number": 6619
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc668",
+    "name": "Gilbert-Greenstein Family/Google/Apple/BAE/Intuitive Foundation/Dream Maker foundation and Pacific Gas & Electric Co./West Coast Products/FIRST NorCal&Pioneer High School&Family/Community",
+    "nickname": "The Apes of Wrath",
+    "state_prov": "California",
+    "team_number": 668
+  },
+  {
+    "city": "Cupertino",
+    "country": "USA",
+    "key": "frc670",
+    "name": "Google/Ronald Crane Family Foundation/Fremont Union High Schools Foundation/Apple Inc/Intuitive Foundation/Improve Your English Tutoring Services Inc./Gene Haas Foundation/DreamMaker Fund/Rotary Club of Cupertino&Homestead High School",
+    "nickname": "Homestead Robotics",
+    "state_prov": "California",
+    "team_number": 670
+  },
+  {
+    "city": "Santa Rosa",
+    "country": "USA",
+    "key": "frc6814",
+    "name": "Sonoma Academy",
+    "nickname": "Ellipse",
+    "state_prov": "California",
+    "team_number": 6814
+  },
+  {
+    "city": "San Lorenzo",
+    "country": "USA",
+    "key": "frc7245",
+    "name": "John Deere/Gene Haas Foundation/Intuitive Foundation/PG&E DreamMaker Fund&Kipp King Collegiate HS",
+    "nickname": "LionBot Robotics",
+    "state_prov": "California",
+    "team_number": 7245
+  },
+  {
+    "city": "Portola Valley",
+    "country": "USA",
+    "key": "frc751",
+    "name": "Woodside Priory School/Woodside Priory Parents/Gene Haas Foundation/Google&Woodside Priory School",
+    "nickname": "barn2robotics",
+    "state_prov": "California",
+    "team_number": 751
+  },
+  {
+    "city": "Atherton",
+    "country": "USA",
+    "key": "frc766",
+    "name": "John Deere/Lambda Labs/Nimble Robotics/Gene Haas Foundation/Molex/DreamMaker Fund/PG&E Foundation/SolidWorks/AMD/The Computer Doctor & Menlo-Atherton High School",
+    "nickname": "M-A Bears",
+    "state_prov": "California",
+    "team_number": 766
+  },
+  {
+    "city": "East Palo Alto",
+    "country": "USA",
+    "key": "frc8048",
+    "name": "Hope Horizon East Palo Alto/Olark/Intuitive Foundation/PG&E/Team 1868 Space Cookies/Google/BAE Systems/Meta/City of Menlo Park&Hope Horizons",
+    "nickname": "East Palo Alto Churrobots",
+    "state_prov": "California",
+    "team_number": 8048
+  },
+  {
+    "city": "Orinda",
+    "country": "USA",
+    "key": "frc8751",
+    "name": "Miramonte High School",
+    "nickname": "Miramonte Robotics Team",
+    "state_prov": "California",
+    "team_number": 8751
+  },
+  {
+    "city": "Half Moon Bay",
+    "country": "USA",
+    "key": "frc8793",
+    "name": "Apple/The Boys and Girls Club of the Coastside/Bodas Construction/Johnson & Johnson Medtech/Intuitive Foundation/Friends of the Library/Qualcomm/AAUW/Lions Club International/Bay Area Floors and Design&Family/Community",
+    "nickname": "Pumpkin Bots",
+    "state_prov": "California",
+    "team_number": 8793
+  },
+  {
+    "city": "San Jose",
+    "country": "USA",
+    "key": "frc9006",
+    "name": "Baig Farooqui&Bay Area Muslim Scouting",
+    "nickname": "Crescent Wing Robotics",
+    "state_prov": "California",
+    "team_number": 9006
+  },
+  {
+    "city": "San Francisco",
+    "country": "USA",
+    "key": "frc9143",
+    "name": "Dr. Treat/Nyx Consulting LLC/Weapon*R Competition Products/Underground Printing/Monday.com/Dean/Stevens Family&Archbishop Riordan High School",
+    "nickname": "Armor Robotics",
+    "state_prov": "California",
+    "team_number": 9143
+  }
+]

@@ -1,0 +1,1308 @@
+{
+  "extra_stats_info": [
+    {
+      "name": "Ranking Score/Match",
+      "precision": 2
+    }
+  ],
+  "rankings": [
+    {
+      "dq": 0,
+      "extra_stats": [
+        3
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 1,
+      "record": {
+        "losses": 0,
+        "ties": 0,
+        "wins": 9
+      },
+      "sort_orders": [
+        27,
+        232,
+        130,
+        216,
+        470
+      ],
+      "team_key": "frc4039"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.888888888888889
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 2,
+      "record": {
+        "losses": 2,
+        "ties": 1,
+        "wins": 6
+      },
+      "sort_orders": [
+        26,
+        188,
+        145,
+        238,
+        450
+      ],
+      "team_key": "frc303"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.6666666666666665
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 3,
+      "record": {
+        "losses": 2,
+        "ties": 0,
+        "wins": 7
+      },
+      "sort_orders": [
+        24,
+        182,
+        180,
+        190,
+        465
+      ],
+      "team_key": "frc5413"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.5555555555555554
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 4,
+      "record": {
+        "losses": 2,
+        "ties": 1,
+        "wins": 6
+      },
+      "sort_orders": [
+        23,
+        163,
+        140,
+        248,
+        415
+      ],
+      "team_key": "frc4028"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.4444444444444446
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 5,
+      "record": {
+        "losses": 2,
+        "ties": 1,
+        "wins": 6
+      },
+      "sort_orders": [
+        22,
+        224,
+        120,
+        133,
+        490
+      ],
+      "team_key": "frc156"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.4444444444444446
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 6,
+      "record": {
+        "losses": 2,
+        "ties": 1,
+        "wins": 6
+      },
+      "sort_orders": [
+        22,
+        168,
+        165,
+        210,
+        425
+      ],
+      "team_key": "frc217"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 7,
+      "record": {
+        "losses": 2,
+        "ties": 1,
+        "wins": 6
+      },
+      "sort_orders": [
+        21,
+        226,
+        110,
+        104,
+        480
+      ],
+      "team_key": "frc5740"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 8,
+      "record": {
+        "losses": 2,
+        "ties": 0,
+        "wins": 7
+      },
+      "sort_orders": [
+        21,
+        198,
+        120,
+        120,
+        450
+      ],
+      "team_key": "frc27"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 9,
+      "record": {
+        "losses": 2,
+        "ties": 0,
+        "wins": 7
+      },
+      "sort_orders": [
+        21,
+        178,
+        80,
+        107,
+        430
+      ],
+      "team_key": "frc1590"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 10,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        21,
+        173,
+        115,
+        200,
+        445
+      ],
+      "team_key": "frc781"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 11,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        21,
+        158,
+        100,
+        117,
+        460
+      ],
+      "team_key": "frc1787"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.3333333333333335
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 12,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        21,
+        154,
+        110,
+        135,
+        435
+      ],
+      "team_key": "frc6032"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.2222222222222223
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 13,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        20,
+        206,
+        105,
+        122,
+        465
+      ],
+      "team_key": "frc263"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.2222222222222223
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 14,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        20,
+        190,
+        95,
+        137,
+        460
+      ],
+      "team_key": "frc1014"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.2222222222222223
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 15,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        20,
+        186,
+        80,
+        80,
+        430
+      ],
+      "team_key": "frc5146"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.2222222222222223
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 16,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        20,
+        180,
+        115,
+        115,
+        430
+      ],
+      "team_key": "frc4269"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.2222222222222223
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 17,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        20,
+        166,
+        170,
+        215,
+        415
+      ],
+      "team_key": "frc379"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.111111111111111
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 18,
+      "record": {
+        "losses": 3,
+        "ties": 1,
+        "wins": 5
+      },
+      "sort_orders": [
+        19,
+        242,
+        135,
+        254,
+        470
+      ],
+      "team_key": "frc2252"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.111111111111111
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 19,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        19,
+        204,
+        135,
+        127,
+        465
+      ],
+      "team_key": "frc706"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2.111111111111111
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 20,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        19,
+        190,
+        85,
+        114,
+        435
+      ],
+      "team_key": "frc451"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 21,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        18,
+        228,
+        105,
+        134,
+        440
+      ],
+      "team_key": "frc6027"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 22,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        18,
+        210,
+        80,
+        105,
+        420
+      ],
+      "team_key": "frc4601"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 23,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        18,
+        196,
+        145,
+        119,
+        455
+      ],
+      "team_key": "frc1676"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        2
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 24,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 6
+      },
+      "sort_orders": [
+        18,
+        178,
+        130,
+        137,
+        455
+      ],
+      "team_key": "frc870"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.8888888888888888
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 25,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        17,
+        204,
+        90,
+        192,
+        455
+      ],
+      "team_key": "frc120"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.8888888888888888
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 26,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        17,
+        194,
+        130,
+        102,
+        465
+      ],
+      "team_key": "frc2399"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.8888888888888888
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 27,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        17,
+        190,
+        100,
+        192,
+        385
+      ],
+      "team_key": "frc3314"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.8888888888888888
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 28,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        17,
+        190,
+        100,
+        51,
+        455
+      ],
+      "team_key": "frc4121"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.7777777777777777
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 29,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        16,
+        236,
+        75,
+        133,
+        455
+      ],
+      "team_key": "frc695"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.7777777777777777
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 30,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 5
+      },
+      "sort_orders": [
+        16,
+        226,
+        185,
+        73,
+        460
+      ],
+      "team_key": "frc337"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.7777777777777777
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 31,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        16,
+        200,
+        155,
+        134,
+        445
+      ],
+      "team_key": "frc4085"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.7777777777777777
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 32,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        16,
+        156,
+        105,
+        104,
+        450
+      ],
+      "team_key": "frc1259"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 33,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        15,
+        220,
+        100,
+        112,
+        465
+      ],
+      "team_key": "frc4611"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 34,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        15,
+        212,
+        125,
+        117,
+        475
+      ],
+      "team_key": "frc2172"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 35,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        15,
+        192,
+        110,
+        92,
+        425
+      ],
+      "team_key": "frc63"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 36,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        15,
+        186,
+        140,
+        98,
+        455
+      ],
+      "team_key": "frc4119"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 37,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        15,
+        154,
+        85,
+        128,
+        395
+      ],
+      "team_key": "frc3324"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.6666666666666667
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 38,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        15,
+        144,
+        95,
+        97,
+        400
+      ],
+      "team_key": "frc4284"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.5555555555555556
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 39,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        14,
+        190,
+        120,
+        75,
+        445
+      ],
+      "team_key": "frc3173"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.5555555555555556
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 40,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        14,
+        189,
+        110,
+        117,
+        435
+      ],
+      "team_key": "frc3171"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.5555555555555556
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 41,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        14,
+        172,
+        105,
+        106,
+        400
+      ],
+      "team_key": "frc4521"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.4444444444444444
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 42,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        13,
+        214,
+        90,
+        144,
+        440
+      ],
+      "team_key": "frc2010"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.4444444444444444
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 43,
+      "record": {
+        "losses": 7,
+        "ties": 0,
+        "wins": 2
+      },
+      "sort_orders": [
+        13,
+        204,
+        120,
+        111,
+        455
+      ],
+      "team_key": "frc639"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.4444444444444444
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 44,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        13,
+        182,
+        115,
+        120,
+        400
+      ],
+      "team_key": "frc5947"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.4444444444444444
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 45,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        13,
+        176,
+        110,
+        112,
+        415
+      ],
+      "team_key": "frc4145"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.4444444444444444
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 46,
+      "record": {
+        "losses": 5,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        13,
+        158,
+        90,
+        91,
+        390
+      ],
+      "team_key": "frc2632"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.3333333333333333
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 47,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        12,
+        170,
+        95,
+        86,
+        405
+      ],
+      "team_key": "frc2641"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.3333333333333333
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 48,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        12,
+        168,
+        105,
+        150,
+        440
+      ],
+      "team_key": "frc3591"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.3333333333333333
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 49,
+      "record": {
+        "losses": 3,
+        "ties": 0,
+        "wins": 4
+      },
+      "sort_orders": [
+        12,
+        104,
+        80,
+        91,
+        325
+      ],
+      "team_key": "frc533"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.1111111111111112
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 50,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        10,
+        190,
+        90,
+        94,
+        425
+      ],
+      "team_key": "frc5667"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.1111111111111112
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 51,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        10,
+        188,
+        70,
+        63,
+        395
+      ],
+      "team_key": "frc4780"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.1111111111111112
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 52,
+      "record": {
+        "losses": 7,
+        "ties": 0,
+        "wins": 2
+      },
+      "sort_orders": [
+        10,
+        174,
+        85,
+        109,
+        420
+      ],
+      "team_key": "frc5973"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1.1111111111111112
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 53,
+      "record": {
+        "losses": 6,
+        "ties": 0,
+        "wins": 3
+      },
+      "sort_orders": [
+        10,
+        160,
+        75,
+        47,
+        410
+      ],
+      "team_key": "frc1248"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        1
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 54,
+      "record": {
+        "losses": 7,
+        "ties": 0,
+        "wins": 2
+      },
+      "sort_orders": [
+        9,
+        154,
+        125,
+        158,
+        360
+      ],
+      "team_key": "frc5418"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        0.7777777777777778
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 55,
+      "record": {
+        "losses": 8,
+        "ties": 0,
+        "wins": 1
+      },
+      "sort_orders": [
+        7,
+        126,
+        100,
+        77,
+        360
+      ],
+      "team_key": "frc1317"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        0.7777777777777778
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 56,
+      "record": {
+        "losses": 4,
+        "ties": 0,
+        "wins": 2
+      },
+      "sort_orders": [
+        7,
+        110,
+        50,
+        62,
+        260
+      ],
+      "team_key": "frc3356"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        0.6666666666666666
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 57,
+      "record": {
+        "losses": 8,
+        "ties": 0,
+        "wins": 1
+      },
+      "sort_orders": [
+        6,
+        192,
+        65,
+        96,
+        410
+      ],
+      "team_key": "frc2603"
+    },
+    {
+      "dq": 0,
+      "extra_stats": [
+        0.6666666666666666
+      ],
+      "matches_played": 9,
+      "qual_average": null,
+      "rank": 58,
+      "record": {
+        "losses": 7,
+        "ties": 0,
+        "wins": 2
+      },
+      "sort_orders": [
+        6,
+        120,
+        80,
+        83,
+        330
+      ],
+      "team_key": "frc5077"
+    }
+  ],
+  "sort_order_info": [
+    {
+      "name": "Ranking Score",
+      "precision": 0
+    },
+    {
+      "name": "Auto",
+      "precision": 0
+    },
+    {
+      "name": "Scale/Challenge",
+      "precision": 0
+    },
+    {
+      "name": "Goals",
+      "precision": 0
+    },
+    {
+      "name": "Defense",
+      "precision": 0
+    }
+  ]
+}

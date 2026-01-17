@@ -1,0 +1,38 @@
+{
+  "address": "199 Churchill Ave",
+  "city": "Woodside",
+  "country": "USA",
+  "district": null,
+  "division_keys": [],
+  "end_date": "2025-03-16",
+  "event_code": "casj",
+  "event_type": 0,
+  "event_type_string": "Regional",
+  "first_event_code": "casj",
+  "first_event_id": null,
+  "gmaps_place_id": null,
+  "gmaps_url": null,
+  "key": "2025casj",
+  "lat": null,
+  "lng": null,
+  "location_name": "Woodside High School",
+  "name": "Silicon Valley Regional",
+  "parent_event_key": null,
+  "playoff_type": 10,
+  "playoff_type_string": "Double Elimination Bracket (8 Alliances)",
+  "postal_code": "94062",
+  "remap_teams": null,
+  "short_name": "Silicon Valley",
+  "start_date": "2025-03-13",
+  "state_prov": "CA",
+  "timezone": "America/Los_Angeles",
+  "webcasts": [
+    {
+      "channel": "firstinspires3",
+      "type": "twitch"
+    }
+  ],
+  "website": "https://cafirst.org/frc/siliconvalley/",
+  "week": 2,
+  "year": 2025
+}

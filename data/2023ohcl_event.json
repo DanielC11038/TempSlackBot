@@ -1,0 +1,42 @@
+{
+  "address": "2000 Prospect Street",
+  "city": "Cleveland",
+  "country": "USA",
+  "district": null,
+  "division_keys": [],
+  "end_date": "2023-04-01",
+  "event_code": "ohcl",
+  "event_type": 0,
+  "event_type_string": "Regional",
+  "first_event_code": "ohcl",
+  "first_event_id": null,
+  "gmaps_place_id": null,
+  "gmaps_url": null,
+  "key": "2023ohcl",
+  "lat": null,
+  "lng": null,
+  "location_name": "Cleveland State University - Wolstein Center",
+  "name": "Buckeye Regional",
+  "parent_event_key": null,
+  "playoff_type": 10,
+  "playoff_type_string": "Double Elimination Bracket (8 Alliances)",
+  "postal_code": "44115",
+  "remap_teams": null,
+  "short_name": "Buckeye",
+  "start_date": "2023-03-29",
+  "state_prov": "OH",
+  "timezone": "America/New_York",
+  "webcasts": [
+    {
+      "channel": "firstinspires7",
+      "type": "twitch"
+    },
+    {
+      "channel": "firstinspires8",
+      "type": "twitch"
+    }
+  ],
+  "website": "https://sites.google.com/view/frcbuckeye/home",
+  "week": 4,
+  "year": 2023
+}

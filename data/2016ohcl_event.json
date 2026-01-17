@@ -1,0 +1,38 @@
+{
+  "address": "Cleveland State University - Wolstein Center\n2000 Prospect Street\nCleveland, OH 44115\nUSA",
+  "city": "Cleveland",
+  "country": "USA",
+  "district": null,
+  "division_keys": [],
+  "end_date": "2016-03-19",
+  "event_code": "ohcl",
+  "event_type": 0,
+  "event_type_string": "Regional",
+  "first_event_code": "ohcl",
+  "first_event_id": "17345",
+  "gmaps_place_id": null,
+  "gmaps_url": null,
+  "key": "2016ohcl",
+  "lat": null,
+  "lng": null,
+  "location_name": "Cleveland State University - Wolstein Center",
+  "name": "Buckeye Regional",
+  "parent_event_key": null,
+  "playoff_type": null,
+  "playoff_type_string": null,
+  "postal_code": "44115",
+  "remap_teams": null,
+  "short_name": "Buckeye",
+  "start_date": "2016-03-16",
+  "state_prov": "OH",
+  "timezone": "America/New_York",
+  "webcasts": [
+    {
+      "channel": "frc2603",
+      "type": "twitch"
+    }
+  ],
+  "website": "http://www.firstbuckeye.org/",
+  "week": 3,
+  "year": 2016
+}

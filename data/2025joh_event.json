@@ -1,0 +1,38 @@
+{
+  "address": "1001 Avenida De Las Americas",
+  "city": "Houston",
+  "country": "USA",
+  "district": null,
+  "division_keys": [],
+  "end_date": "2025-04-19",
+  "event_code": "joh",
+  "event_type": 3,
+  "event_type_string": "Championship Division",
+  "first_event_code": "johnson",
+  "first_event_id": null,
+  "gmaps_place_id": null,
+  "gmaps_url": null,
+  "key": "2025joh",
+  "lat": null,
+  "lng": null,
+  "location_name": "George R. Brown Convention Center",
+  "name": "Johnson Division",
+  "parent_event_key": "2025cmptx",
+  "playoff_type": 10,
+  "playoff_type_string": "Double Elimination Bracket (8 Alliances)",
+  "postal_code": "77010",
+  "remap_teams": null,
+  "short_name": "Johnson",
+  "start_date": "2025-04-16",
+  "state_prov": "TX",
+  "timezone": "America/Chicago",
+  "webcasts": [
+    {
+      "channel": "firstinspires_johnson",
+      "type": "twitch"
+    }
+  ],
+  "website": "https://www.firstchampionship.org",
+  "week": null,
+  "year": 2025
+}

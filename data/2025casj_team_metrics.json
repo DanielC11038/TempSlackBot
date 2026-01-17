@@ -1,0 +1,372 @@
+[
+  {
+    "team_key": "frc1323",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 17,
+      "l": 0,
+      "t": 0
+    },
+    "avg_alliance_score": 206.11764705882354
+  },
+  {
+    "team_key": "frc649",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 10,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 126
+  },
+  {
+    "team_key": "frc5940",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 16,
+      "l": 1,
+      "t": 0
+    },
+    "avg_alliance_score": 185.05882352941177
+  },
+  {
+    "team_key": "frc668",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 6,
+      "l": 12,
+      "t": 0
+    },
+    "avg_alliance_score": 104.16666666666667
+  },
+  {
+    "team_key": "frc3045",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 11,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 148.5
+  },
+  {
+    "team_key": "frc581",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 13,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 148.88888888888889
+  },
+  {
+    "team_key": "frc6059",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 2,
+      "l": 10,
+      "t": 0
+    },
+    "avg_alliance_score": 73.25
+  },
+  {
+    "team_key": "frc10059",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 3,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 63.083333333333336
+  },
+  {
+    "team_key": "frc1351",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 8,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 109.8
+  },
+  {
+    "team_key": "frc6418",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 9,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 98
+  },
+  {
+    "team_key": "frc6814",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 7,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 89.06666666666666
+  },
+  {
+    "team_key": "frc10644",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 4,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 81.08333333333333
+  },
+  {
+    "team_key": "frc670",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 8,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 104.26666666666667
+  },
+  {
+    "team_key": "frc1700",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 7,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 73.61538461538461
+  },
+  {
+    "team_key": "frc6238",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 10,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 112.41176470588235
+  },
+  {
+    "team_key": "frc4159",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 7,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 96.53333333333333
+  },
+  {
+    "team_key": "frc8048",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 9,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 107.125
+  },
+  {
+    "team_key": "frc9006",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 76.25
+  },
+  {
+    "team_key": "frc6619",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 10,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 96
+  },
+  {
+    "team_key": "frc10372",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 4,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 84.08333333333333
+  },
+  {
+    "team_key": "frc7245",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 3,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 64.08333333333333
+  },
+  {
+    "team_key": "frc3880",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 6,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 77.5
+  },
+  {
+    "team_key": "frc4904",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 70.28571428571429
+  },
+  {
+    "team_key": "frc1967",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 95.35714285714286
+  },
+  {
+    "team_key": "frc751",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 6,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 86.16666666666667
+  },
+  {
+    "team_key": "frc2367",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 2,
+      "l": 10,
+      "t": 0
+    },
+    "avg_alliance_score": 59.583333333333336
+  },
+  {
+    "team_key": "frc10252",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 6,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 76.5
+  },
+  {
+    "team_key": "frc100",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 7,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 89.71428571428571
+  },
+  {
+    "team_key": "frc2643",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 7,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 95.875
+  },
+  {
+    "team_key": "frc2489",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 57.333333333333336
+  },
+  {
+    "team_key": "frc2854",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 8,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 84.57142857142857
+  },
+  {
+    "team_key": "frc8751",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 4,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 63.333333333333336
+  },
+  {
+    "team_key": "frc9143",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 11,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 110.6470588235294
+  },
+  {
+    "team_key": "frc5027",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 63.833333333333336
+  },
+  {
+    "team_key": "frc4990",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 80.66666666666667
+  },
+  {
+    "team_key": "frc8793",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 8,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 92.14285714285714
+  },
+  {
+    "team_key": "frc766",
+    "event_key": "2025casj",
+    "wl": {
+      "w": 8,
+      "l": 9,
+      "t": 0
+    },
+    "avg_alliance_score": 112.76470588235294
+  }
+]
