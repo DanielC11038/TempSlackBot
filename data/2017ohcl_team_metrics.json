@@ -1,0 +1,602 @@
+[
+  {
+    "team_key": "frc156",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 11,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 279.4375
+  },
+  {
+    "team_key": "frc3015",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 12,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 307.75
+  },
+  {
+    "team_key": "frc340",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 11,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 300.25
+  },
+  {
+    "team_key": "frc379",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 11,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 293.53333333333336
+  },
+  {
+    "team_key": "frc4028",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 12,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 305.26666666666665
+  },
+  {
+    "team_key": "frc2399",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 8,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 286.4
+  },
+  {
+    "team_key": "frc1126",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 233.72727272727272
+  },
+  {
+    "team_key": "frc3193",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 236.27272727272728
+  },
+  {
+    "team_key": "frc4085",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 241.63636363636363
+  },
+  {
+    "team_key": "frc2010",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 7,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 236
+  },
+  {
+    "team_key": "frc291",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 10,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 271.53333333333336
+  },
+  {
+    "team_key": "frc2614",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 9,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 278.73333333333335
+  },
+  {
+    "team_key": "frc3003",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 235.5
+  },
+  {
+    "team_key": "frc3324",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 8,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 264.4166666666667
+  },
+  {
+    "team_key": "frc4121",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 223.5
+  },
+  {
+    "team_key": "frc578",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 254.27272727272728
+  },
+  {
+    "team_key": "frc4930",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 255.9090909090909
+  },
+  {
+    "team_key": "frc4145",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 266.72727272727275
+  },
+  {
+    "team_key": "frc2228",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 8,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 288.61538461538464
+  },
+  {
+    "team_key": "frc1507",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 9,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 302.84615384615387
+  },
+  {
+    "team_key": "frc5413",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 286.3076923076923
+  },
+  {
+    "team_key": "frc4050",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 277.72727272727275
+  },
+  {
+    "team_key": "frc174",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 7,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 263.3636363636364
+  },
+  {
+    "team_key": "frc2632",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 233.3
+  },
+  {
+    "team_key": "frc5973",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 247.4
+  },
+  {
+    "team_key": "frc2051",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 230.11111111111111
+  },
+  {
+    "team_key": "frc5667",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 257.6666666666667
+  },
+  {
+    "team_key": "frc1590",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 211.77777777777777
+  },
+  {
+    "team_key": "frc4467",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 234.88888888888889
+  },
+  {
+    "team_key": "frc6032",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 219.88888888888889
+  },
+  {
+    "team_key": "frc3591",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 228.11111111111111
+  },
+  {
+    "team_key": "frc2340",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 256.8888888888889
+  },
+  {
+    "team_key": "frc6355",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 194.55555555555554
+  },
+  {
+    "team_key": "frc128",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 1,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 185
+  },
+  {
+    "team_key": "frc677",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 1,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 186.77777777777777
+  },
+  {
+    "team_key": "frc4119",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 190.77777777777777
+  },
+  {
+    "team_key": "frc3173",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 228
+  },
+  {
+    "team_key": "frc2603",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 191.77777777777777
+  },
+  {
+    "team_key": "frc1787",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 223
+  },
+  {
+    "team_key": "frc4601",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 228.55555555555554
+  },
+  {
+    "team_key": "frc6460",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 225
+  },
+  {
+    "team_key": "frc6027",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 217.88888888888889
+  },
+  {
+    "team_key": "frc378",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 253.88888888888889
+  },
+  {
+    "team_key": "frc451",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 214.88888888888889
+  },
+  {
+    "team_key": "frc3484",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 240
+  },
+  {
+    "team_key": "frc4611",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 261.8888888888889
+  },
+  {
+    "team_key": "frc5077",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 191
+  },
+  {
+    "team_key": "frc4269",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 245.11111111111111
+  },
+  {
+    "team_key": "frc120",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 224.11111111111111
+  },
+  {
+    "team_key": "frc3356",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 1,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 192.66666666666666
+  },
+  {
+    "team_key": "frc1551",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 262.3333333333333
+  },
+  {
+    "team_key": "frc3504",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 246.22222222222223
+  },
+  {
+    "team_key": "frc2172",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 241.11111111111111
+  },
+  {
+    "team_key": "frc4780",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 176.22222222222223
+  },
+  {
+    "team_key": "frc1450",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 6,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 250.44444444444446
+  },
+  {
+    "team_key": "frc6181",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 222.66666666666666
+  },
+  {
+    "team_key": "frc1248",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 198.88888888888889
+  },
+  {
+    "team_key": "frc1308",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 197.44444444444446
+  },
+  {
+    "team_key": "frc1038",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 241.11111111111111
+  },
+  {
+    "team_key": "frc5418",
+    "event_key": "2017ohcl",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 246
+  }
+]

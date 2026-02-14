@@ -1,0 +1,479 @@
+[
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc10229",
+    "name": "The Dalton School",
+    "nickname": "Event Horizon",
+    "state_prov": "New York",
+    "team_number": 10229
+  },
+  {
+    "city": "Durban ",
+    "country": "South Africa",
+    "key": "frc10399",
+    "name": "Unstoppable Youth In Action",
+    "nickname": "Burman Bush",
+    "state_prov": "Kwazulu-Natal",
+    "team_number": 10399
+  },
+  {
+    "city": "Pelham",
+    "country": "USA",
+    "key": "frc10413",
+    "name": "Family/Community",
+    "nickname": "Flux Robotics",
+    "state_prov": "New York",
+    "team_number": 10413
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc10452",
+    "name": "Horace Mann School",
+    "nickname": "RoboLions",
+    "state_prov": "New York",
+    "team_number": 10452
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc10454",
+    "name": "Uncommon Prep Charter High School",
+    "nickname": "UPC Raptors",
+    "state_prov": "New York",
+    "team_number": 10454
+  },
+  {
+    "city": "ANKARA",
+    "country": "Türkiye",
+    "key": "frc10471",
+    "name": "BILIM SANAT MERKEZI/OSCAR MAKİNA&CUBUK BILIM SANAT MERKEZI",
+    "nickname": "Gamarobotics",
+    "state_prov": "Ankara",
+    "team_number": 10471
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc1155",
+    "name": "The Alumni Foundation of the Bronx High School of Science/Bronx Science Parents’ Association/ConEdison/Bloomberg/Optimum./Roundtable&Bronx High School of Science",
+    "nickname": "SciBorgs",
+    "state_prov": "New York",
+    "team_number": 1155
+  },
+  {
+    "city": "Long Island City",
+    "country": "USA",
+    "key": "frc1601",
+    "name": "Bloomberg/BAE Systems/West Coast Products/Gene Hass/Jet Blue/Aviation High School Foundation&Aviation Career & Tech Ed HS",
+    "nickname": "Quantum Samurai",
+    "state_prov": "New York",
+    "team_number": 1601
+  },
+  {
+    "city": "Queens",
+    "country": "USA",
+    "key": "frc1796",
+    "name": "Boyce Technologies/Sunnyside Community Services/West Coast Products/Bloomberg/Gene Haas Foundation/Turner Construction/RoboTigers Alumni Association&Queens Technical High School",
+    "nickname": "RoboTigers",
+    "state_prov": "New York",
+    "team_number": 1796
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc1880",
+    "name": "East Harlem Tutorial Program/Bloomberg/PwC/ConEdison/BAE Systems&NASA",
+    "nickname": "Warriors of East Harlem",
+    "state_prov": "New York",
+    "team_number": 1880
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc2265",
+    "name": "The Alumni Foundation of The Bronx High School of Science/The Parents' Association of The Bronx High School of Science/Bloomberg/Optimum./Roundtable&Bronx High School of Science",
+    "nickname": "Fe Maidens",
+    "state_prov": "New York",
+    "team_number": 2265
+  },
+  {
+    "city": "Yonkers",
+    "country": "USA",
+    "key": "frc2344",
+    "name": "Con Edison&Saunders Trade & Tech High Sch",
+    "nickname": "The Saunders Droid Factory",
+    "state_prov": "New York",
+    "team_number": 2344
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc3004",
+    "name": "Bloomberg&Bronx Engr & Tech Academy",
+    "nickname": "Bx Quixote",
+    "state_prov": "New York",
+    "team_number": 3004
+  },
+  {
+    "city": "Fresh Meadows",
+    "country": "USA",
+    "key": "frc3017",
+    "name": "Francis Lewis High School/FLHS SO/FLHS Robotics Alumni&Francis Lewis High School",
+    "nickname": "Patriots",
+    "state_prov": "New York",
+    "team_number": 3017
+  },
+  {
+    "city": "Queens Village",
+    "country": "USA",
+    "key": "frc3053",
+    "name": "Pershing Square&Martin Van Buren High School",
+    "nickname": "VB Stingers",
+    "state_prov": "New York",
+    "team_number": 3053
+  },
+  {
+    "city": "Jamaica Estates",
+    "country": "USA",
+    "key": "frc3204",
+    "name": "Catholic Foundation for Brooklyn and Queens/ConEdison & Mary Louis Academy",
+    "nickname": "Steampunk Penguins",
+    "state_prov": "New York",
+    "team_number": 3204
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc333",
+    "name": "Bloomberg/The Dispenza-Vilarelle Robotics Group/The \"Please Clean the Shop Floor\" Alumni Donations/Optimum&John Dewey High School",
+    "nickname": "MEGALODONS",
+    "state_prov": "New York",
+    "team_number": 333
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc334",
+    "name": "Brooklyn Tech Alumni Foundation, Inc./Josh Weston/Alan Silberstein/Susanne Ellis/Francis Kweller/Kweller Prep/Raymond Cardoza/Ike Heller Robotics Center/NYC FIRST&Brooklyn Technical High School",
+    "nickname": "TechKnights",
+    "state_prov": "New York",
+    "team_number": 334
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc335",
+    "name": "Pershing Square Foundation/Con Edison/Bezos Foundation/MTA-NYC Transit Authority/Polytech/City Tech & Science Skills Center",
+    "nickname": "Skillz Tech Gear Botz",
+    "state_prov": "New York",
+    "team_number": 335
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc3419",
+    "name": "Alliance Bernstein/Hunter College High School PTA/Hunter College High School Alumnae/Intuitive Foundation/D. E. Shaw&Hunter College High School",
+    "nickname": "RoHawks",
+    "state_prov": "New York",
+    "team_number": 3419
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc354",
+    "name": "Bloomberg & George Westinghouse Cte HS",
+    "nickname": "G-House Pirates",
+    "state_prov": "New York",
+    "team_number": 354
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc369",
+    "name": "ULA Network/NYC FIRST/Optimum&William Grady Career & Tech HS",
+    "nickname": "High Voltage Robotics",
+    "state_prov": "New York",
+    "team_number": 369
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc3760",
+    "name": "Sports Foundation INC/HibusAero Systems&Bronx Aerospace High School",
+    "nickname": "Robo Raccoons",
+    "state_prov": "New York",
+    "team_number": 3760
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc395",
+    "name": "Bloomberg/The New York Yankees/BAE systems/NYC FIRST/Hackclub/Young Sheldon/Ford&Bronx International High Sch",
+    "nickname": "2 Train Robotics",
+    "state_prov": "New York",
+    "team_number": 395
+  },
+  {
+    "city": "Staten Island",
+    "country": "USA",
+    "key": "frc4012",
+    "name": "Con Edison & St. Joseph By-the-Sea high school",
+    "nickname": "Bad News Bots",
+    "state_prov": "New York",
+    "team_number": 4012
+  },
+  {
+    "city": "State College",
+    "country": "USA",
+    "key": "frc4027",
+    "name": "Centre County 4-H/WHVL TV State College/Penn State College of Engineering/Penn State Applied Research Lab/Raytheon Technologies/Ben Franklin Technology Parnters/TechKnowServ Corporation&4-H",
+    "nickname": "Centre Punch",
+    "state_prov": "Pennsylvania",
+    "team_number": 4027
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc4299",
+    "name": "BCS PTA/Brooklyn Collaborative/BCS RoboSharks Go Fund Me Campaign&Brooklyn Sch-Collab Studies",
+    "nickname": "BCS RoboSharks",
+    "state_prov": "New York",
+    "team_number": 4299
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc4571",
+    "name": "Con Edison/BAE ES/Pershing Square Foundation/Gene Haas Foundation&Manhattan Ctr Science & Math",
+    "nickname": "Rambots",
+    "state_prov": "New York",
+    "team_number": 4571
+  },
+  {
+    "city": "Yonkers",
+    "country": "USA",
+    "key": "frc5123",
+    "name": "Con Edison/Pershing Square & Yonkers Middle High School",
+    "nickname": "Mechadogs",
+    "state_prov": "New York",
+    "team_number": 5123
+  },
+  {
+    "city": "Astoria",
+    "country": "USA",
+    "key": "frc5298",
+    "name": "Mr. & Mrs. Robert Schwartz/Xerox/Con Edison/Bloomberg&Energy Tech High School",
+    "nickname": "E-TECH CHARGERS",
+    "state_prov": "New York",
+    "team_number": 5298
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc5421",
+    "name": "SolidWorks & Birch Wathen Lenox School",
+    "nickname": "BirchBots",
+    "state_prov": "New York",
+    "team_number": 5421
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc5806",
+    "name": "Horace Mann Mid Upper School",
+    "nickname": "Basement Lions",
+    "state_prov": "New York",
+    "team_number": 5806
+  },
+  {
+    "city": "Jamaica",
+    "country": "USA",
+    "key": "frc640",
+    "name": "Con Edison&Thomas Edison Career & Tech HS",
+    "nickname": "Edison Robotics",
+    "state_prov": "New York",
+    "team_number": 640
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc6590",
+    "name": "Rockwell Automation/Bloomberg Philanthropies & Transit Tech CTE High School",
+    "nickname": "SaviTech",
+    "state_prov": "New York",
+    "team_number": 6590
+  },
+  {
+    "city": "Richmond Hill",
+    "country": "USA",
+    "key": "frc6593",
+    "name": "Pershing Square Foundation/FIRST/BAE Systems&Richmond Hill High School",
+    "nickname": "HyperDrive Robotics",
+    "state_prov": "New York",
+    "team_number": 6593
+  },
+  {
+    "city": "Jamaica",
+    "country": "USA",
+    "key": "frc6636",
+    "name": "Bloomberg/FIRST&Jamaica Gateway to the Sciences",
+    "nickname": "Full Metal Beavers",
+    "state_prov": "New York",
+    "team_number": 6636
+  },
+  {
+    "city": "Ozone Park",
+    "country": "USA",
+    "key": "frc6648",
+    "name": "NYC FIRST&John Adams High School",
+    "nickname": "MechaSpartans",
+    "state_prov": "New York",
+    "team_number": 6648
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc6873",
+    "name": "Gregorio Luperon HS Sci & Math",
+    "nickname": "The Generals",
+    "state_prov": "New York",
+    "team_number": 6873
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc694",
+    "name": "Belliveau Family/Stuyvesant Parents' Association/Stuyvesant Alumni Association/Bloomberg/HBK/The Cobras&Stuyvesant High School",
+    "nickname": "StuyPulse",
+    "state_prov": "New York",
+    "team_number": 694
+  },
+  {
+    "city": "West Nyack",
+    "country": "USA",
+    "key": "frc6969",
+    "name": "Clarkstown South High School",
+    "nickname": "Cyborgs6969",
+    "state_prov": "New York",
+    "team_number": 6969
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc7036",
+    "name": "The Berkeley Carroll School",
+    "nickname": "The Beta Bots",
+    "state_prov": "New York",
+    "team_number": 7036
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc7272",
+    "name": "Two Sigma/Gene Haas Foundation/BAE Systems/Intuitive Foundation&HS for Environmental Studies",
+    "nickname": "Envirobots",
+    "state_prov": "New York",
+    "team_number": 7272
+  },
+  {
+    "city": "Bronx",
+    "country": "USA",
+    "key": "frc743",
+    "name": "Sony/Bloomberg/Con Edison & HS of Computers & Technology",
+    "nickname": "Technobots",
+    "state_prov": "New York",
+    "team_number": 743
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc7668",
+    "name": "The Chapin School",
+    "nickname": "GatorBots",
+    "state_prov": "New York",
+    "team_number": 7668
+  },
+  {
+    "city": "Thiells",
+    "country": "USA",
+    "key": "frc7730",
+    "name": "North Rockland Central School District & North Rockland High School",
+    "nickname": "uNReal",
+    "state_prov": "New York",
+    "team_number": 7730
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc806",
+    "name": "Gene Haas Foundation/Bloomberg/NYC FIRST/S&P Global/The Beinert Family/Optimum/D'Onofrio General Contractors Corp.&Xaverian High School",
+    "nickname": "The Brooklyn Blacksmiths",
+    "state_prov": "New York",
+    "team_number": 806
+  },
+  {
+    "city": "Ozone Park",
+    "country": "USA",
+    "key": "frc8739",
+    "name": "NYC FIRST/Bloomberg/Gene Haas Foundation/Intuitive Foundation/Makelab/Melos Detailing/Redhawk Robotics Mentor & Alumni Association/HS for CTEA Parent Teacher Association&High School for Construction Trades, Engineering & Architecture",
+    "nickname": "Redhawk Robotics",
+    "state_prov": "New York",
+    "team_number": 8739
+  },
+  {
+    "city": "VALBONNE",
+    "country": "France",
+    "key": "frc9220",
+    "name": "ARM/Community Foundation Ireland/Gene Haas Foundation/FIRST France/CCEI/SAP/Aski-da/Campus International de Valbonne/Ville de Valbonne Sophia Antipolis&Centre International de Valbonne",
+    "nickname": "Geekos",
+    "state_prov": "Alpes-Maritimes",
+    "team_number": 9220
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc9295",
+    "name": "&Columbia Secondary School&Family/Community",
+    "nickname": "Harlem Rails",
+    "state_prov": "New York",
+    "team_number": 9295
+  },
+  {
+    "city": "Brooklyn",
+    "country": "USA",
+    "key": "frc9437",
+    "name": "Uncommon Collegiate Charter High School",
+    "nickname": "Cosmonauts",
+    "state_prov": "New York",
+    "team_number": 9437
+  },
+  {
+    "city": "Yonkers",
+    "country": "USA",
+    "key": "frc9509",
+    "name": "Yonkers Partners in Education",
+    "nickname": "Cybears",
+    "state_prov": "New York",
+    "team_number": 9509
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc9636",
+    "name": "Thornton Tomasetti/NYC FIRST/Bloomberg/Gene Haas&West End Secondary School",
+    "nickname": "Space Junk",
+    "state_prov": "New York",
+    "team_number": 9636
+  },
+  {
+    "city": "New York",
+    "country": "USA",
+    "key": "frc9642",
+    "name": "Family/Community",
+    "nickname": "I.N.T. Robotics",
+    "state_prov": "New York",
+    "team_number": 9642
+  }
+]

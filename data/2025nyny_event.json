@@ -1,0 +1,38 @@
+{
+  "address": "216 Fort Washington Avenue",
+  "city": "New York",
+  "country": "USA",
+  "district": null,
+  "division_keys": [],
+  "end_date": "2025-04-06",
+  "event_code": "nyny",
+  "event_type": 0,
+  "event_type_string": "Regional",
+  "first_event_code": "nyny",
+  "first_event_id": null,
+  "gmaps_place_id": null,
+  "gmaps_url": null,
+  "key": "2025nyny",
+  "lat": null,
+  "lng": null,
+  "location_name": "The Armory Track & Field Center",
+  "name": "New York City Regional",
+  "parent_event_key": null,
+  "playoff_type": 10,
+  "playoff_type_string": "Double Elimination Bracket (8 Alliances)",
+  "postal_code": "10032",
+  "remap_teams": null,
+  "short_name": "New York City",
+  "start_date": "2025-04-03",
+  "state_prov": "NY",
+  "timezone": "America/New_York",
+  "webcasts": [
+    {
+      "channel": "firstinspires12",
+      "type": "twitch"
+    }
+  ],
+  "website": "http://www.nycfirst.org",
+  "week": 5,
+  "year": 2025
+}

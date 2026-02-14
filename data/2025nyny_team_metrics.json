@@ -1,0 +1,532 @@
+[
+  {
+    "team_key": "frc1796",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 13,
+      "l": 1,
+      "t": 0
+    },
+    "avg_alliance_score": 184.5
+  },
+  {
+    "team_key": "frc6873",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 8,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 125.92857142857143
+  },
+  {
+    "team_key": "frc694",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 13,
+      "l": 1,
+      "t": 0
+    },
+    "avg_alliance_score": 179.64285714285714
+  },
+  {
+    "team_key": "frc4027",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 10,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 99.75
+  },
+  {
+    "team_key": "frc4571",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 11,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 101.93333333333334
+  },
+  {
+    "team_key": "frc2265",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 8,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 97.46666666666667
+  },
+  {
+    "team_key": "frc7730",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 80.53846153846153
+  },
+  {
+    "team_key": "frc4012",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 70.11111111111111
+  },
+  {
+    "team_key": "frc10471",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 68
+  },
+  {
+    "team_key": "frc9437",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 67.33333333333333
+  },
+  {
+    "team_key": "frc8739",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 83.9090909090909
+  },
+  {
+    "team_key": "frc9642",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 11,
+      "l": 2,
+      "t": 0
+    },
+    "avg_alliance_score": 110.07692307692308
+  },
+  {
+    "team_key": "frc1601",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 6,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 76.72727272727273
+  },
+  {
+    "team_key": "frc7272",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 1
+    },
+    "avg_alliance_score": 65.1
+  },
+  {
+    "team_key": "frc3760",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 69.11111111111111
+  },
+  {
+    "team_key": "frc6648",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 5,
+      "t": 1
+    },
+    "avg_alliance_score": 72.66666666666667
+  },
+  {
+    "team_key": "frc2344",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 77.08333333333333
+  },
+  {
+    "team_key": "frc3004",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 4,
+      "t": 1
+    },
+    "avg_alliance_score": 72.77777777777777
+  },
+  {
+    "team_key": "frc640",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 6,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 62.55555555555556
+  },
+  {
+    "team_key": "frc6593",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 11,
+      "l": 3,
+      "t": 0
+    },
+    "avg_alliance_score": 97.28571428571429
+  },
+  {
+    "team_key": "frc3204",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 72.88888888888889
+  },
+  {
+    "team_key": "frc10452",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 71.88888888888889
+  },
+  {
+    "team_key": "frc3419",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 9,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 107.85714285714286
+  },
+  {
+    "team_key": "frc9636",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 6,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 89.33333333333333
+  },
+  {
+    "team_key": "frc3017",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 57.22222222222222
+  },
+  {
+    "team_key": "frc334",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 78.63636363636364
+  },
+  {
+    "team_key": "frc354",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 82.66666666666667
+  },
+  {
+    "team_key": "frc5421",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 5,
+      "t": 1
+    },
+    "avg_alliance_score": 62.666666666666664
+  },
+  {
+    "team_key": "frc10229",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 77.07692307692308
+  },
+  {
+    "team_key": "frc1155",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 106.3076923076923
+  },
+  {
+    "team_key": "frc9220",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 8,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 102.58333333333333
+  },
+  {
+    "team_key": "frc6590",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 62.81818181818182
+  },
+  {
+    "team_key": "frc9509",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 53.22222222222222
+  },
+  {
+    "team_key": "frc806",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 70.22222222222223
+  },
+  {
+    "team_key": "frc10454",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 1,
+      "l": 7,
+      "t": 1
+    },
+    "avg_alliance_score": 54.111111111111114
+  },
+  {
+    "team_key": "frc5123",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 58.333333333333336
+  },
+  {
+    "team_key": "frc5298",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 6,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 89.33333333333333
+  },
+  {
+    "team_key": "frc3053",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 1,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 53.111111111111114
+  },
+  {
+    "team_key": "frc5806",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 50.111111111111114
+  },
+  {
+    "team_key": "frc10413",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 65.66666666666667
+  },
+  {
+    "team_key": "frc7036",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 64.66666666666667
+  },
+  {
+    "team_key": "frc7668",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 1,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 41
+  },
+  {
+    "team_key": "frc395",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 5,
+      "l": 4,
+      "t": 0
+    },
+    "avg_alliance_score": 74.77777777777777
+  },
+  {
+    "team_key": "frc369",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 64.66666666666667
+  },
+  {
+    "team_key": "frc6969",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 7,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 87.58333333333333
+  },
+  {
+    "team_key": "frc10399",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 77.44444444444444
+  },
+  {
+    "team_key": "frc335",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 65
+  },
+  {
+    "team_key": "frc9295",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 4,
+      "l": 5,
+      "t": 0
+    },
+    "avg_alliance_score": 75.88888888888889
+  },
+  {
+    "team_key": "frc4299",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 6,
+      "t": 0
+    },
+    "avg_alliance_score": 70.55555555555556
+  },
+  {
+    "team_key": "frc6636",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 5,
+      "t": 1
+    },
+    "avg_alliance_score": 62
+  },
+  {
+    "team_key": "frc1880",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 77.0909090909091
+  },
+  {
+    "team_key": "frc743",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 2,
+      "l": 7,
+      "t": 0
+    },
+    "avg_alliance_score": 51.666666666666664
+  },
+  {
+    "team_key": "frc333",
+    "event_key": "2025nyny",
+    "wl": {
+      "w": 3,
+      "l": 8,
+      "t": 0
+    },
+    "avg_alliance_score": 69.81818181818181
+  }
+]

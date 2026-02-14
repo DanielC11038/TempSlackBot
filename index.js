@@ -5,7 +5,6 @@ const OpenAI = require('openai')
 const fs = require('fs')
 const path = require('path')
 
-
 const new_app = new App( {
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -13,107 +12,88 @@ const new_app = new App( {
     appToken: process.env.SLACK_APP_TOKEN,
 })
 
-
 // OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAIKEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini'
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
-
-//Bot Commands
+//First bot command!
 new_app.command('/hello', async ({ command, ack, say }) => {
     await ack()
-
-
     await say(`Hello <@${command.user_id}>`)
 })
-
 
 const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to
 const API_KEY = process.env.OPENAIKEY
 const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS || ""
-
-
-async function getChatResponse(prompt, eventKey = null, vectorContext = null) {
-    try {
-        //console.log("sending prompt to chatgpt") //debug
-        const messages = [];
-        if(CHAT_INSTRUCTIONS !== undefined && CHAT_INSTRUCTIONS.length > 0) {
-            messages.push({ role: "system", content: CHAT_INSTRUCTIONS });
-            //messages.push({ role: "user", content: prompt });
-        }
-
-        // Retrieve hard facts if eventKey exists
-        let eventFacts = "";
-        if (eventKey) {
-            eventFacts = getEventFacts(eventKey);
-        }
-
-        // Build user message combining hard facts and vector store context
-        const usersContentParts = [];
-        if (eventFacts)
-            usersContentParts.push(`Authoritative Stats:\n${eventFacts}`);
-        if (vectorContext)
-            usersContentParts.push(`Additional Context:\n${vectorContext}`);
-       
-        usersContentParts.push(`Question:\n${prompt}`);
-        //console.log(messages)
-
-        messages.push({ role: "user", content: usersContentParts.join('\n\n') }); //
-
-        const response = await axios.post(
-            API_URL, //where axios sends the request
-            {
-                model: OPENAI_MODEL,
-                messages: messages,
-                max_tokens: 500, //limit response length
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${API_KEY}`, //authenticates request
-                    'Content-Type': 'application/json',
-                },
-            }
-        )
-        console.log("received response:", response.data) //debug
-        return response.data.choices[0].message.content /*|| ""*/ //returns the first answer by ChatGPT
-    } catch (error) {
-        console.error("Error calling ChatGPT API:", error.response ? error.response.data : error.message) //debug
-        return `Error calling ChatGPT API: ${error.response ? JSON.stringify(error.response.data) : error.message}`
-    }
-}
-
-
-//const BLUE_FILE = process.env.BLUEALLIANCEFILE
-// Retrieve file content API
-//const FILE_LINK = 'https://api.openai.com/v1/files/' + BLUE_FILE + '/content'
-
 
 //Blue alliance GET functions
 const TBA_KEY = process.env.TBA_KEY;
 
 // Local data directory
 const DATA_DIR = path.join(process.cwd(), 'data');
-if (!fs.existsSync(DATA_DIR)) 
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-
-const vectorStoresByEvent = new Map(); // Simple in-memory mapping: event_key -> vector_data_id
-
+    if (!fs.existsSync(DATA_DIR))
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+const vectorStoresByEvent = new Map(); // SIMPLE IN-MEMORY MAPPING: event_key -> vector_data_id
 const VS_MAP_FILE = path.join(DATA_DIR, 'vector_stores.json');
+
+
+
+// ~~~ conversation memory ~~~
+
+const CONVERSATION_FILE = path.join(DATA_DIR, 'conversations.json');
+const conversations = new Map(); 
+// conversation_id -> { eventKey, messages: [] }
+
+function loadConversations() {
+  if (!fs.existsSync(CONVERSATION_FILE)) return;
+  try {
+    const raw = JSON.parse(fs.readFileSync(CONVERSATION_FILE, 'utf8'));
+    for (const [id, convo] of Object.entries(raw)) {
+      conversations.set(id, convo);
+    }
+    console.log('Loaded conversations');
+  } catch (e) {
+    console.error('Failed to load conversations:', e);
+  }
+}
+
+function saveConversations() {
+  try {
+    const obj = Object.fromEntries(conversations);
+    fs.writeFileSync(CONVERSATION_FILE, JSON.stringify(obj, null, 2));
+  } catch (e) {
+    console.error('Failed to save conversations:', e);
+  }
+}
+
+// load on startup
+loadConversations();
+
+// persist on exit
+process.on('SIGINT', saveConversations);
+process.on('SIGTERM', saveConversations);
+
+
+
+// ~~~ Blue Alliance data handling and vector store management ~~~
 
 function loadVectorStoreMap() {
     if (fs.existsSync(VS_MAP_FILE)) {
         try {
             const obj = JSON.parse(fs.readFileSync(VS_MAP_FILE, 'utf8')) || {};
-            
-            for (const [k, v] of Object.entries(obj)) vectorStoresByEvent.set(k, v);
-                console.log('Loaded vectorStoresByEvent from', VS_MAP_FILE);
+           
+            for (const [k, v] of Object.entries(obj)) {
+                vectorStoresByEvent.set(k, v);
+            }
+            console.log('Loaded vectorStoresByEvent from', VS_MAP_FILE);
 
         } catch (e) {
             console.error('Failed loading vector store map:', e && e.message || e);
         }
     }
 }
+
 
 function saveVectorStoreMap() {
     try {
@@ -129,15 +109,17 @@ function saveVectorStoreMap() {
 loadVectorStoreMap();
 
 // persist on exit signals
-process.on('SIGINT', () => { 
-    try { saveVectorStoreMap(); 
-    } catch(_){}; 
-    process.exit(); 
+process.on('SIGINT', () => {
+    try { 
+        saveVectorStoreMap();
+    } catch(_){};
+    process.exit();
 });
-process.on('SIGTERM', () => { 
-    try { saveVectorStoreMap(); 
-    } catch(_){}; 
-    process.exit(); 
+process.on('SIGTERM', () => {
+    try { 
+        saveVectorStoreMap();
+    } catch(_){};
+    process.exit();
 });
 
 // Build combined list of event keys from local files and vectorStoresByEvent
@@ -159,7 +141,7 @@ function buildEventOptions() {
 async function tba(pathFragment) {
     if(!TBA_KEY) {
         throw new Error("No Blue Alliance file specified in environment variable BLUEALLIANCEFILE") //no
-}    
+    }    
    
     const url = `https://www.thebluealliance.com/api/v3/${pathFragment}`;
     const res = await axios.get(url, {headers: {'X-TBA-Auth-Key': TBA_KEY}});
@@ -211,13 +193,11 @@ async function buildTBAFiles(eventKey) {
     }));
 
     writeJSON(matchesPath, matchRows);
-
     const metrics = computeTeamMetrics(matches, eventKey);
     writeJSON(metricsPath, metrics);
 
     return {eventPath, teamsPath, matchesPath, rankingsPath, metricsPath};
 }
-
 
 // Derived minimal team metrics (W/L/T + avg alliance score)
 function computeTeamMetrics(matches, eventKey) {
@@ -259,14 +239,7 @@ function computeTeamMetrics(matches, eventKey) {
             }
             cur.games += 1;
             cur.total += bluescore;
-            //byTeam.set(t, cur);
         }
-    /*fs.writeFileSync(metricsPath, '');
-    for (const [teamKey, metrics] of byTeam) {
-        appendJSONL(metricsPath, { team_key,
-        event_key: eventKey,
-        wl: {w: metrics.w, l: metrics.l, t: metrics.t},
-        avg_alliance_score: metrics.games? metrics.total / metrics.games : null }); } */
     }
     const out = [];
     for (const [teamKey, T] of byTeam) {  
@@ -280,15 +253,17 @@ function computeTeamMetrics(matches, eventKey) {
 }
 
 
-//OpenAI storage: vector store and uploads
+
+//~~~ OpenAI storage: vector store and uploads ~~~
+
 async function createOrGetVectorStore(name) {
     const vs = await openai.vectorStores.create({name});
     console.log('vector store create response:', vs);
     // The client may return the id in different shapes; ensure we return a string id.
     if (vs && typeof vs.id === 'string') return vs.id;
-    if (vs && vs.data && typeof vs.data.id === 'string') 
+    if (vs && vs.data && typeof vs.data.id === 'string')
         return vs.data.id;
-    if (typeof vs === 'string') 
+    if (typeof vs === 'string')
         return vs;
     throw new Error('Unable to determine vector store id from create response: ' + JSON.stringify(vs));
 }
@@ -303,6 +278,7 @@ async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) { //u
     }
     //await openai.vectorStores.files.create({vector_store_id: vectorStoreID,
        //     file_ids: fileIDs});
+
 
     return fileIDs;
 }
@@ -326,7 +302,7 @@ async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
             console.log('vectorStores.files.list response:', list && (list.data || list));
             const files = list.data  || [];
             const allProcessed = files.length > 0 && files.every(f => (f.status || '').toLowerCase() === 'processed');
-            if(allProcessed) 
+            if(allProcessed)
                 return true;
         } catch (err) {
             console.error('Error listing vector store files:', err.response ? err.response.data : err.message || err);
@@ -337,23 +313,50 @@ async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
 }
 
 
-// -------- Ask with retrieval (uses vector store) --------
-async function askWithVectorStore({ question, vectorStoreId }) {
+
+// ~~~ Ask with retrieval (uses vector store) ~~~
+
+async function askWithVectorStore({question, vectorStoreId}) {
+    console.log("ask w vector store. Question: ", question)
     try {
-        const resp = await openai.responses.create({ model: OPENAI_MODEL,
-            input: [ { role: 'system', content: CHAT_INSTRUCTIONS }, { role: 'user', content: question } ],
-            tools: [{ type: 'file_search' }],
-            tool_resources: { file_search: { vector_store_ids: [vectorStoreId] } }, temperature: 0.2 });
-        return resp.output_text || (resp.choices?.[0]?.message?.content || '');
-    } catch (err) {
-        // Log error and return null so callers can fallback to local retrieval
-        console.error('askWithVectorStore error:', err && (err.response ? err.response.data : err.message || err));
-        // If API complains about unknown parameter 'tool_resources', treat as unsupported
-        const msg = err && (err.response ? JSON.stringify(err.response.data) : err.message || '');
-        if (typeof msg === 'string' && msg.includes('tool_resources')) {
-            console.warn('Responses API rejected tool_resources; falling back to local retrieval.');
-            return null;
+        //create assistant
+        const assistant = await openai.beta.assistants.create({
+            name: "ai FRC bot",
+            instructions: process.env.CHAT_INSTRUCTIONS,
+            tools: [{type: "file_search"}],
+            model: OPENAI_MODEL
+        });
+        // 1. Create a Thread
+        const thread = await openai.beta.threads.create({
+            messages: [
+                { role: 'user', content: question }
+            ],
+            // 2. Attach the Vector Store to the Thread
+            tool_resources: {
+                "file_search": { "vector_store_ids": [vectorStoreId] }
+            }
+        });
+
+        // 3. Run the Thread using an Assistant (you'll need an Assistant ID)
+        // If you don't have one, you can create a temporary one or use a static ID
+    console.log("gonna error?")
+        const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
+            assistant_id: assistant.id, 
+            tools: [{ type: "file_search" }],
+            instructions: CHAT_INSTRUCTIONS
+        });
+
+        console.log("worked")
+
+        if (run.status === 'completed') {
+            const messages = await openai.beta.threads.messages.list(thread.id);
+            // The latest message from the assistant
+            return messages.data[0].content[0].text.value;
         }
+        
+        return null;
+    } catch (err) {
+        console.error('askWithVectorStore error:', err);
         return null;
     }
 }
@@ -361,6 +364,7 @@ async function askWithVectorStore({ question, vectorStoreId }) {
 
 function formatMatchLabel(m) {
     const level = (m.comp_level || '').toLowerCase();
+
 
     switch (level) {
         case 'qm':
@@ -403,7 +407,190 @@ async function localRetrieveEvent(eventKey, question) {
 }
 
 
-// -------- slack commands --------
+
+// ~~~ pit scouting data ~~~
+const PIT_SCOUTING_DIR = path.join(DATA_DIR, 'pitscouting');
+const pitScoutingVectorStoresBySeason = new Map(); // season -> vectorStoreId
+const PIT_VS_MAP_FILE = path.join(DATA_DIR, 'pit_vector_stores.json');
+
+function loadPitVectorStoreMap() {
+    if (fs.existsSync(PIT_VS_MAP_FILE)) {
+        try {
+            const obj = JSON.parse(fs.readFileSync(PIT_VS_MAP_FILE, 'utf8')) || {};
+            for (const [k, v] of Object.entries(obj))
+                pitScoutingVectorStoresBySeason.set(Number(k), v);
+            console.log('Loaded pitScoutingVectorStoresBySeason from', PIT_VS_MAP_FILE);
+        } catch (e) {
+            console.error('Failed loading pit vector store map:', e && e.message || e);
+        }
+    }
+}
+
+
+function savePitVectorStoreMap() {
+    try {
+        const obj = Object.fromEntries(pitScoutingVectorStoresBySeason);
+        fs.writeFileSync(PIT_VS_MAP_FILE, JSON.stringify(obj, null, 2));
+        console.log('Saved pitScoutingVectorStoresBySeason to', PIT_VS_MAP_FILE);
+    } catch (e) {
+        console.error('Failed saving pit vector store map:', e && e.message || e);
+    }
+}
+
+// Call on startup
+loadPitVectorStoreMap();
+process.on('SIGINT', () => {
+    try { savePitVectorStoreMap();
+    } catch(_){};
+});
+process.on('SIGTERM', () => {
+    try { savePitVectorStoreMap();
+    } catch(_){};
+ });
+
+
+ async function getOrCreatePitVectorStore(season) {
+    if (pitVectorStoresBySeason.has(season))
+        return pitVectorStoresBySeason.get(season);
+
+
+    const vs = await openai.vectorStores.create({ name: `pit-${season}` });
+    const id = vs.id || (vs.data && vs.data.id);
+    pitVectorStoresBySeason.set(season, id);
+    return id;
+}
+
+function getPitTeamPath(season, teamKey) {
+    return path.join(PIT_DIR, String(season), `${teamKey}.json`);
+}
+
+async function uploadPitFile(season, teamKey) {
+    const filePath = getPitTeamPath(season, teamKey);
+    if (!fs.existsSync(filePath)) return;
+
+    const vsId = await getOrCreatePitVectorStore(season);
+    await openai.files.create({
+        file: fs.createReadStream(filePath),
+        purpose: 'assistants'
+    });
+}
+
+
+
+// ~~~ response from ChatGPT ~~~
+
+function getEventFacts(eventKey) {
+    const metricsPath = path.join(DATA_DIR, `${eventKey}_team_metrics.json`);
+    if (!fs.existsSync(metricsPath)) 
+        return "No metrics available.";
+
+    const metrics = JSON.parse(
+        fs.readFileSync(metricsPath, 'utf-8')
+    );
+
+    return metrics.map(m =>
+        `Team ${m.team_key}: W/L/T = ${m.wl.w}/${m.wl.l}/${m.wl.t},
+            Avg Alliance Score = ${Number.isFinite(m.avg_alliance_score)
+                ? m.avg_alliance_score.toFixed(1)
+                : "N/A"
+        }`
+    ).join('\n');
+}
+
+
+async function getChatResponse(conversationId, prompt, eventKey = null, vectorContext = null) {
+    try {
+        //console.log("sending prompt to chatgpt") //debug
+        let convo = conversations.get(conversationId);
+
+        if (!convo) {
+            convo = {
+                eventKey,
+                messages: []
+            };
+            conversations.set(conversationId, convo);
+        }
+
+        const messages = [];
+        if(CHAT_INSTRUCTIONS !== undefined && CHAT_INSTRUCTIONS.length > 0) {
+            messages.push({ role: "system", content: CHAT_INSTRUCTIONS });
+        }
+ 
+        // Retrieve hard facts if eventKey exists
+        let eventFacts = "";
+        if (eventKey) {
+            eventFacts = getEventFacts(eventKey);
+        }
+
+        // Build user message combining hard facts and vector store context
+        const usersContentParts = [];
+        if (eventFacts)
+            usersContentParts.push(`Authoritative Stats:\n${eventFacts}`);
+        if (vectorContext)
+            usersContentParts.push(`Additional Context:\n${vectorContext}`);
+       
+        usersContentParts.push(`Question:\n${prompt}`);
+        messages.push(...convo.messages); //add conversation history
+        messages.push({ role: "user", content: usersContentParts.join('\n\n') }); //
+
+        const response = await axios.post(
+            API_URL, //where axios sends the request
+            {
+                model: OPENAI_MODEL,
+                messages: messages,
+                max_tokens: 500, //limit response length
+            },
+            {
+                headers: {
+                    'Authorization': `Bearer ${API_KEY}`, //authenticates request
+                    'Content-Type': 'application/json',
+                },
+            }
+        )
+
+        const answer = response.data.choices[0].message.content || "";
+
+        convo.messages.push({ role: "user", content: prompt });
+        convo.messages.push({ role: "assistant", content: answer });
+
+        return answer;
+
+    } catch (error) {
+        console.error("Error calling ChatGPT API:", error.response ? error.response.data : error.message) //debug
+        return `Error calling ChatGPT API: ${error.response ? JSON.stringify(error.response.data) : error.message}`
+    }
+}
+
+
+
+// ~~~ slack commands ~~~
+
+// /pit 2026 frc254 swerve "2-3 piece auto" "7s climb" "Strong under defense"
+new_app.command('/goPitScout', async ({ command, ack, say }) => {
+    await ack();
+
+    const [season, teamKey, drivetrain, auto, endgame, ...notesArr] = command.text.split(' ');
+    const notes = notesArr.join(' ');
+
+    if (!season || !teamKey)
+        return say('Usage: /pit <season> <team> <drivetrain> <auto> <endgame> <notes>');
+
+    const dir = path.join(PIT_DIR, String(season));
+    fs.mkdirSync(dir, { recursive: true });
+    const file = getPitTeamPath(season, teamKey);
+
+    writeJSON(file, {
+        team_key: teamKey,
+        season: Number(season),
+        drivetrain,
+        autonomous: auto,
+        endgame,
+        notes
+    });
+
+    await uploadPitFile(season, teamKey);
+    await say(`Saved pit scouting for ${teamKey} (${season})`);
+});
 
 
 // Upload Blue Alliance data to OpenAI storage and create a vector store // Usage: /upload 2025casj
@@ -437,28 +624,6 @@ new_app.command('/upload', async ({ command, ack, say }) => {
     }
 });
 
-
-/*
-async function retrieveFile() {
-    try {
-        const response = await axios.get(
-            FILE_LINK, //where axios gets the file content
-            {
-                headers: {
-                    'Authorization': `Bearer ${API_KEY}`, //authenticates request
-                    'Content-Type': 'application/json',
-                },
-            }
-        )
-        console.log("received response:", response.data)
-        return response.data //returns the file content
-    } catch (error) {
-        console.error("Error Get the file:", error.response ? error.response.data : error.message)
-    }
-}
-*/
-
-
 (async () => {
     //start your app
     await new_app.start(process.env.PORT || 3000)
@@ -467,25 +632,7 @@ async function retrieveFile() {
 }) ()
 
 
-function getEventFacts(eventKey) {
-    const metricsPath = path.join(DATA_DIR, `${eventKey}_team_metrics.json`);
-    if (!fs.existsSync(metricsPath)) return "No metrics available.";
-
-    const metrics = JSON.parse(
-        fs.readFileSync(metricsPath, 'utf-8')
-    );
-
-    return metrics.map(m =>
-        `Team ${m.team_key}: W/L/T = ${m.wl.w}/${m.wl.l}/${m.wl.t}, 
-            Avg Alliance Score = ${Number.isFinite(m.avg_alliance_score)
-                ? m.avg_alliance_score.toFixed(1)
-                : "N/A"
-        }`
-    ).join('\n');
-}
-
-
-new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
+new_app.command('/chat', async ({ command, ack, client }) => {
     await ack()
 
     const text = command.text.trim();
@@ -493,11 +640,14 @@ new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
     let question = text;
 
     // Extract optional eventKey (first word) if it exists
+    //broken. TODO: fix
     const parts = text.split(" ");
     if (parts.length > 1 && vectorStoresByEvent.has(parts[0])) {
         eventKey = parts[0];
         question = parts.slice(1).join(" ");
     }
+
+    const conversationId = `convo_${Date.now()}_${command.user_id}`;
 
     // If still no eventKey, present a checkbox modal listing stored/local event keys
     if (!eventKey) {
@@ -534,9 +684,13 @@ new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
         }
     }
 
-
     // If we have a vector store for this event, run a retrieval query
     let vectorContext = null;
+    let pitScoutingContext= null;
+
+    console.log("Eventkey", eventKey)
+    console.log("vsId", vsId)
+
     if (eventKey) {
         const vsId = vectorStoresByEvent.get(eventKey);
         if (vsId) {
@@ -549,8 +703,31 @@ new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
         }
     }
 
+    /* Season-based pit scouting retrieval
+    const season = new Date().getFullYear(); // adjust if you store season elsewhere
+    if (pitVectorStoresBySeason.has(season)) {
+    try {
+        pitContext = await askWithVectorStore({
+            question,
+            vectorStoreId: pitVectorStoresBySeason.get(season)
+        });
+    } catch (e) {
+        console.error('Pit retrieval error:', e && (e.message || e));
+    }
+    }
 
-    const answer = await getChatResponse(question, eventKey, vectorContext);
+
+    // Combine both contexts
+    const combinedContext = [vectorContext, pitContext].filter(Boolean).join('\n\n'); */
+    // Ask model
+    const answer = await getChatResponse({
+        conversationId, 
+        userPrompt: question, 
+        eventKey, 
+        vectorContext
+    });
+
+    console.log("ANSWER: ",answer)
 
     await client.views.open({
         trigger_id: command.trigger_id, //calls (triggers) the creation of a modal
@@ -561,7 +738,8 @@ new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
             private_metadata: JSON.stringify({ channel_id: command.channel_id,
                 invoking_user: command.user_id,
                 eventKey: eventKey || null,
-                question, answer }),
+                question, answer, conversationId
+            }),
             title: {
                 type: "plain_text",
                 text: "Chat"
@@ -602,6 +780,7 @@ new_app.command('/chat', async ({ command, ack, /*say*/ client }) => {
         }
      })
 })
+
 
 // Handler for event selection modal (checkboxes)
 new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
@@ -665,18 +844,45 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
 });
 
 
-    new_app.view('chat_modal', async ({ ack, body, view, client }) => {
+new_app.view('chat_modal', async ({ ack, body, view, client }) => {
     const userId = body.user.id;
     const prompt = view.state.values.user_prompt_block.user_prompt_input.value;
 
+
     // parse private metadata to get eventKey and channel
     let parsedMeta = {};
-    try { parsedMeta = view.private_metadata ? JSON.parse(view.private_metadata) : {}; } catch (e) { parsedMeta = {}; }
+    try { 
+        parsedMeta = view.private_metadata ? JSON.parse(view.private_metadata) : {}; 
+    } catch (e) { 
+        parsedMeta = {}; 
+    }
+
+    await ack({
+        response_action: 'update',
+        view: {
+            type: "modal",
+            callback_id: "chat_modal", // still the same id
+            private_metadata: view.private_metadata,
+            title: { type: "plain_text", text: "Chat" },
+            close: { type: "plain_text", text: "Close" },
+            blocks: [
+                {
+                    type: "section",
+                    text: { type: "mrkdwn", text: ":hourglass_flowing_sand: *Thinking...* This usually takes 5-10 seconds." }
+                }
+            ]
+        }
+    });
+
+
     const eventKey = parsedMeta.eventKey || null;
     const channelId = parsedMeta.channel_id || null;
+    const conversationId = parsedMeta.conversationId;
 
     // perform retrieval using eventKey if present
     let vectorContext = null;
+    let pitContext = null;
+
     if (eventKey) {
         try {
             const vsId = vectorStoresByEvent.get(eventKey);
@@ -688,7 +894,8 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
             }
             if (!vectorContext) {
                 const local = await localRetrieveEvent(eventKey, prompt);
-                if (local) vectorContext = local;
+                if (local) 
+                    vectorContext = local;
             }
         } catch (e) {
             console.error('chat_modal retrieval error:', e && (e.response ? e.response.data : e.message || e));
@@ -696,24 +903,30 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
     }
 
     // get answer from model using eventKey and vectorContext
-    const answer = await getChatResponse(prompt, eventKey, vectorContext);
-
+    const answer = await getChatResponse({
+        conversationId,
+        usernPrompt: prompt, 
+        eventKey, 
+        vectorContext
+    });
     // declaring the variable question
     const question = prompt;
-
     // prepare updated modal: show question (read-only) and the answer, plus a button to post to channel
-    const privateMeta = { channel_id: channelId || null, eventKey: eventKey || null, question, answer };
-
+    const privateMeta = { channel_id: channelId || null, eventKey: eventKey || null, question, answer, conversationId };
 
     // Return the updated view in "ack" and allow Slack to keep the modal open and applies the update
-    await ack({
-        response_action: 'update',
+    await client.views.update({
+        view_id: body.view.id,
         view: {
             type: "modal",
             callback_id: "chat_modal", // still the same id
             private_metadata: JSON.stringify(privateMeta),
             title: { type: "plain_text", text: "Chat" },
             close: { type: "plain_text", text: "Close" },
+            submit: { 
+                type: 'plain_text', 
+                text: 'Submit' 
+            },
             blocks: [
                 { // question block
                     type: "section",
@@ -731,7 +944,20 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
                         text: `*Answer*\n${privateMeta.answer}`
                     }
                 },
-                // actions: let user choose to post to channel
+                {
+                    type: "input",
+                    block_id: "user_prompt_block",
+                    label: { type: "plain_text", text: "Follow‑up message" },
+                    element: {
+                        type: "plain_text_input",
+                        action_id: "user_prompt_input",
+                        multiline: true,
+                        placeholder: {
+                        type: "plain_text",
+                        text: "Ask a follow‑up question..."
+                        }
+                    },
+                },
                 {
                     type: "actions",
                     block_id: "post_actions",
@@ -750,30 +976,15 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
 });
 
 
-/*
-new_app.command('/retrieve', async ({ command, ack, say }) => {
-    await ack()
-
-
-    const question = command.text
-    const info = await retrieveFile()
-    const answer = await getChatResponse(info)
-
-
-    // await say(`Your trying to retrieve: ${question}` + `\n \n answer: ${answer}`)
-    await say(`Your question is: ${question}` + `\n \n answer: ` + `${answer}`)
-})
-*/
-
-
 new_app.command('/help', async ({ command, ack, say }) => {
     await ack()
+
 
     await say(`"hello" - greets the user \n
         "chat" - ask ChatGPT a question \n
         "upload <event_key>" - upload Blue Alliance data for the specified event to OpenAI and create a vector store \n
         "help" - displays this help message`)
-        
+       
 })
 
 
@@ -810,13 +1021,11 @@ new_app.action('reply_in_channel', async ({ ack, body, client }) => {
         return;
     }
 
-
     // post the answer into the original channel
     await client.chat.postMessage({
         channel: channelId,
         text: `*You asked:* ${question}\n\n*Answer:* ${answer}`
     });
-
 
     // update modal to show confirmation (cool emoji! or just a check mark)
     await client.views.update({
@@ -844,8 +1053,5 @@ new_app.action('reply_in_channel', async ({ ack, body, client }) => {
         }
     });
 });
-
-
-
 
 

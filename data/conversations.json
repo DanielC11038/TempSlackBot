@@ -1,0 +1,119 @@
+{
+  "convo_1769905522060_U09ENQRQ4NB": {
+    "eventKey": null,
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      },
+      {
+        "role": "assistant",
+        "content": "It looks like your message might be empty or missing. Could you please ask your question again? I'm here to help with any information about FIRST Robotics Competition teams, events, or general inquiries!"
+      }
+    ]
+  },
+  "convo_1769905531406_U09ENQRQ4NB": {
+    "eventKey": null,
+    "messages": [
+      {
+        "role": "user",
+        "content": "2025ohcl"
+      },
+      {
+        "role": "assistant",
+        "content": "It appears that \"2025ohcl\" refers to the FIRST Robotics Competition (FRC) team number 2025 from Ohio, known as \"The Iron Lions.\" \n\nIf you are looking for specific information about Team 2025, such as their performance, match history, or upcoming events, please let me know!"
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today? If you have questions about FIRST Robotics Competition teams, events, or anything else related to FRC, feel free to ask!"
+      },
+      {
+        "role": "user",
+        "content": "hows ur day?"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for asking! I'm here and ready to assist you. How can I help you today? If you have any questions about FRC or anything else, just let me know!"
+      },
+      {
+        "role": "user",
+        "content": "whats 1 + 1"
+      },
+      {
+        "role": "assistant",
+        "content": "1 + 1 equals 2. If you have more questions or need information about FRC or anything else, feel free to ask!"
+      },
+      {
+        "role": "user",
+        "content": "multiply that by 2"
+      },
+      {
+        "role": "assistant",
+        "content": "Multiplying 2 by 2 gives you 4. If you have any other questions or need assistance with FRC topics, just let me know!"
+      }
+    ]
+  },
+  "convo_1769905899042_U09ENQRQ4NB": {
+    "eventKey": null,
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today? If you have any questions about FIRST Robotics Competition (FRC) teams, events, or information, feel free to ask!"
+      }
+    ]
+  },
+  "convo_1769906179878_U09ENQRQ4NB": {
+    "eventKey": null,
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      },
+      {
+        "role": "assistant",
+        "content": "It seems you did not enter any information or question. How can I assist you today with FIRST Robotics Competition (FRC)?"
+      }
+    ]
+  },
+  "undefined": {
+    "eventKey": "2025ohcl",
+    "messages": [
+      {
+        "role": "user",
+        "content": "which teams won??"
+      },
+      {
+        "role": "assistant",
+        "content": "The data provided lists win/loss/tie records for the teams, but it does not specify which teams won any particular event or competition. To determine the winning teams in a specific event, you would need the results from that event, including playoff information or rankings. \n\nIf you're looking for a specific event's winning teams, please provide the name or location of that event, and I can help you find that information. Otherwise, based on the records, those teams with the highest win/loss records could be considered stronger, but winning status in any event isn't available in the current data.\n\nCheck my answer."
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today? If you have any questions about FRC teams, events, or need specific information, feel free to ask!"
+      }
+    ]
+  },
+  "[object Object]": {
+    "eventKey": null,
+    "messages": [
+      {
+        "role": "user"
+      },
+      {
+        "role": "assistant",
+        "content": "It seems like your question didn't come through. Could you please provide more details or clarify what information you are looking for regarding FIRST Robotics Competition (FRC) teams, events, or any other related topic? I'm here to help!"
+      }
+    ]
+  }
+}
