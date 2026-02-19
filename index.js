@@ -276,8 +276,8 @@ async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) { //u
             purpose: 'assistants'});
         fileIDs.push(file.id); //Attach to Vector Store
     }
-    //await openai.vectorStores.files.create({vector_store_id: vectorStoreID,
-       //     file_ids: fileIDs});
+    await openai.vectorStores.files.create({vector_store_id: vectorStoreID,
+         file_ids: fileIDs});
 
 
     return fileIDs;
@@ -318,6 +318,7 @@ async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
 
 async function askWithVectorStore({question, vectorStoreId}) {
     console.log("ask w vector store. Question: ", question)
+    console.log("vectorStoreId:", vectorStoreId)
     try {
         //create assistant
         const assistant = await openai.beta.assistants.create({
@@ -339,7 +340,7 @@ async function askWithVectorStore({question, vectorStoreId}) {
 
         // 3. Run the Thread using an Assistant (you'll need an Assistant ID)
         // If you don't have one, you can create a temporary one or use a static ID
-    console.log("gonna error?")
+        console.log("gonna error?")
         const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
             assistant_id: assistant.id, 
             tools: [{ type: "file_search" }],
@@ -531,7 +532,7 @@ async function getChatResponse(conversationId, prompt, eventKey = null, vectorCo
        
         usersContentParts.push(`Question:\n${prompt}`);
         messages.push(...convo.messages); //add conversation history
-        messages.push({ role: "user", content: usersContentParts.join('\n\n') }); //
+        messages.push({ role: "user", content: usersContentParts.join('\n\n') }); 
 
         const response = await axios.post(
             API_URL, //where axios sends the request
@@ -608,9 +609,11 @@ new_app.command('/upload', async ({ command, ack, say }) => {
         const vsId = await createOrGetVectorStore(`tba-${eventKey}-${Date.now()}`);
         console.log('createOrGetVectorStore returned:', vsId, 'type:', typeof vsId);
 
-        for (const f of [paths.eventPath, paths.teamsPath, paths.matchesPath, paths.rankingsPath, paths.metricsPath]) {
+        /*for (const f of [paths.eventPath, paths.teamsPath, paths.matchesPath, paths.rankingsPath, paths.metricsPath]) {
             await openai.files.create({ file: fs.createReadStream(f), purpose: 'assistants' });
-        }
+        }*/
+
+        await uploadAndAttachFilesToVectorStore(vsId, [paths.eventPath, paths.teamsPath, paths.matchesPath, paths.rankingsPath, paths.metricsPath]);
 
         await say('Indexing files… this can take a moment.');
         const indexed = await waitForIndexing(vsId, 60000);
@@ -648,9 +651,10 @@ new_app.command('/chat', async ({ command, ack, client }) => {
     }
 
     const conversationId = `convo_${Date.now()}_${command.user_id}`;
+    console.log(conversationId);
 
     // If still no eventKey, present a checkbox modal listing stored/local event keys
-    if (!eventKey) {
+    if (!eventKey) { 
         try {
             const options = buildEventOptions();
             if (options.length > 0) {
@@ -659,7 +663,12 @@ new_app.command('/chat', async ({ command, ack, client }) => {
                     view: {
                         type: 'modal',
                         callback_id: 'choose_event_modal',
-                        private_metadata: JSON.stringify({ channel_id: command.channel_id, invoking_user: command.user_id, question: question }),
+                        private_metadata: JSON.stringify({ 
+                            channel_id: command.channel_id, 
+                            invoking_user: command.user_id, 
+                            question: question,
+                            conversation_id: conversationId
+                        }),
                         title: { type: 'plain_text', text: 'Choose Event' },
                         submit: { type: 'plain_text', text: 'Select' },
                         close: { type: 'plain_text', text: 'Cancel' },
@@ -680,6 +689,7 @@ new_app.command('/chat', async ({ command, ack, client }) => {
                 return; // wait for selection
             }
         } catch (e) {
+            console.log(conversationId);
             console.error('Error opening choose_event_modal:', e && (e.response ? e.response.data : e.message || e));
         }
     }
@@ -720,12 +730,12 @@ new_app.command('/chat', async ({ command, ack, client }) => {
     // Combine both contexts
     const combinedContext = [vectorContext, pitContext].filter(Boolean).join('\n\n'); */
     // Ask model
-    const answer = await getChatResponse({
+    const answer = await getChatResponse(
         conversationId, 
-        userPrompt: question, 
+        prompt, 
         eventKey, 
         vectorContext
-    });
+    );
 
     console.log("ANSWER: ",answer)
 
@@ -891,6 +901,7 @@ new_app.view('chat_modal', async ({ ack, body, view, client }) => {
                     console.error('askWithVectorStore error in chat_modal:', err && (err.response ? err.response.data : err.message || err));
                     return null;
                 });
+                console.log("vc:", vectorContext)
             }
             if (!vectorContext) {
                 const local = await localRetrieveEvent(eventKey, prompt);
@@ -903,12 +914,13 @@ new_app.view('chat_modal', async ({ ack, body, view, client }) => {
     }
 
     // get answer from model using eventKey and vectorContext
-    const answer = await getChatResponse({
+    const answer = await getChatResponse(
         conversationId,
-        usernPrompt: prompt, 
+        prompt, 
         eventKey, 
         vectorContext
-    });
+    );
+
     // declaring the variable question
     const question = prompt;
     // prepare updated modal: show question (read-only) and the answer, plus a button to post to channel

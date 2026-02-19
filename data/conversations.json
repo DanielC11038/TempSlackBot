@@ -88,19 +88,11 @@
     "messages": [
       {
         "role": "user",
-        "content": "which teams won??"
+        "content": "who won this competition?"
       },
       {
         "role": "assistant",
-        "content": "The data provided lists win/loss/tie records for the teams, but it does not specify which teams won any particular event or competition. To determine the winning teams in a specific event, you would need the results from that event, including playoff information or rankings. \n\nIf you're looking for a specific event's winning teams, please provide the name or location of that event, and I can help you find that information. Otherwise, based on the records, those teams with the highest win/loss records could be considered stronger, but winning status in any event isn't available in the current data.\n\nCheck my answer."
-      },
-      {
-        "role": "user",
-        "content": "hi"
-      },
-      {
-        "role": "assistant",
-        "content": "Hello! How can I assist you today? If you have any questions about FRC teams, events, or need specific information, feel free to ask!"
+        "content": "I couldn't find specific information about the competition winner based on the details provided. To provide an accurate response, I would need to know which specific competition or event you are referring to. Please provide the name or date of the event, and I can assist you further. \n\nCheck my answer."
       }
     ]
   },
@@ -112,7 +104,7 @@
       },
       {
         "role": "assistant",
-        "content": "It seems like your question didn't come through. Could you please provide more details or clarify what information you are looking for regarding FIRST Robotics Competition (FRC) teams, events, or any other related topic? I'm here to help!"
+        "content": "It seems that your question didn't come through. Could you please provide it again?"
       }
     ]
   }
