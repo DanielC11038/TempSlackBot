@@ -13,7 +13,7 @@
     "country": "USA",
     "key": "frc10208",
     "name": "Millstream Career Center",
-    "nickname": "MAYHEM",
+    "nickname": "Mayhem Manufacturing",
     "state_prov": "Ohio",
     "team_number": 10208
   },
@@ -57,8 +57,8 @@
     "city": "Cleveland",
     "country": "USA",
     "key": "frc1308",
-    "name": "Dale F. Brown Science & Technology Fund/David C. Dillemuth/Bob Ward&Saint Ignatius High School",
-    "nickname": "Saint Ignatius High School Robotics Team",
+    "name": "Saint Ignatius High School/David C. Dillemuth/Dale F. Brown Science & Technology Fund/Bob Ward&Saint Ignatius High School",
+    "nickname": "Wildcat Robotics",
     "state_prov": "Ohio",
     "team_number": 1308
   },
@@ -174,7 +174,7 @@
     "city": "Austintown",
     "country": "USA",
     "key": "frc3193",
-    "name": "Aptiv Foundation/Timken Foundation/The Gene Haas Foundation/DoD STEM/Sheetz&Fitch High School",
+    "name": "Aptiv Foundation/Timken Foundation/The Gene Haas Foundation/DoD STEM/Sheetz/ABB&Fitch High School",
     "nickname": "Falco Tech",
     "state_prov": "Ohio",
     "team_number": 3193
@@ -201,7 +201,7 @@
     "city": "Lima",
     "country": "USA",
     "key": "frc3777",
-    "name": "Lima Family YMCA/United Way of Greater Lima/Panda Express/American Electric Power&Lima Family YMCA",
+    "name": "United Way of Greater Lima/PPG&Lima Family YMCA",
     "nickname": "Bean City Bots",
     "state_prov": "Ohio",
     "team_number": 3777

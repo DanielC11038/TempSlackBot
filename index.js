@@ -23,7 +23,7 @@ new_app.command('/hello', async ({ command, ack, say }) => {
     await say(`Hello <@${command.user_id}>`)
 })
 
-const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to
+const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to (endpoint)
 const API_KEY = process.env.OPENAIKEY
 const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS || ""
 
@@ -37,16 +37,49 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 const vectorStoresByEvent = new Map(); // SIMPLE IN-MEMORY MAPPING: event_key -> vector_data_id
 const VS_MAP_FILE = path.join(DATA_DIR, 'vector_stores.json');
 
+//assistant declaration
+let ASSISTANT_ID = null;
+
+async function getAssistantId() {
+    if (ASSISTANT_ID) 
+        return ASSISTANT_ID;
+
+    const assistant = await openai.beta.assistants.create({
+        name: "ai FRC bot",
+        instructions: CHAT_INSTRUCTIONS,
+        tools: [{ type: "file_search" }],
+        model: OPENAI_MODEL
+    });
+
+    if (!assistant || !assistant.id) {
+        throw new Error('Failed to create assistant');
+    }
+    
+    ASSISTANT_ID = assistant.id;
+    return ASSISTANT_ID;
+}
+
+const originalVSFilesList = openai.vectorStores.files.list;
+openai.vectorStores.files.list = async function (...args) {
+    console.error('vectorStores.files.list called with:', args);
+    return originalVSFilesList.apply(this, args);
+};
+
+const originalVSFilesCreate = openai.vectorStores.files.create;
+openai.vectorStores.files.create = async function (...args) {
+    console.error('vectorStores.files.create called with:', args);
+    return originalVSFilesCreate.apply(this, args);
+};
 
 
 // ~~~ conversation memory ~~~
 
-const CONVERSATION_FILE = path.join(DATA_DIR, 'conversations.json');
-const conversations = new Map(); 
-// conversation_id -> { eventKey, messages: [] }
+const CONVERSATION_FILE = path.join(DATA_DIR, 'conversations.json'); //file where chat hsitory is saved
+const conversations = new Map(); // conversation_id -> { eventKey, messages: [] }
 
 function loadConversations() {
-  if (!fs.existsSync(CONVERSATION_FILE)) return;
+  if (!fs.existsSync(CONVERSATION_FILE)) 
+    return;
   try {
     const raw = JSON.parse(fs.readFileSync(CONVERSATION_FILE, 'utf8'));
     for (const [id, convo] of Object.entries(raw)) {
@@ -84,7 +117,7 @@ function loadVectorStoreMap() {
             const obj = JSON.parse(fs.readFileSync(VS_MAP_FILE, 'utf8')) || {};
            
             for (const [k, v] of Object.entries(obj)) {
-                vectorStoresByEvent.set(k, v);
+                vectorStoresByEvent.set(k, normalizeVectorStoreId(v));
             }
             console.log('Loaded vectorStoresByEvent from', VS_MAP_FILE);
 
@@ -207,7 +240,8 @@ function computeTeamMetrics(matches, eventKey) {
     for (const m of matches) {
         const red = m.alliances?.red;
         const blue = m.alliances?.blue;
-    if (!red || !blue) continue; //skip if missing alliance data
+        if (!red || !blue) 
+            continue; //skip if missing alliance data
         const redscore = red.score;
         const bluescore = blue.score;
         const scored = Number.isFinite(redscore) && Number.isFinite(bluescore) && redscore >= 0 && bluescore >= 0;
@@ -257,116 +291,121 @@ function computeTeamMetrics(matches, eventKey) {
 //~~~ OpenAI storage: vector store and uploads ~~~
 
 async function createOrGetVectorStore(name) {
-    const vs = await openai.vectorStores.create({name});
-    console.log('vector store create response:', vs);
-    // The client may return the id in different shapes; ensure we return a string id.
-    if (vs && typeof vs.id === 'string') return vs.id;
-    if (vs && vs.data && typeof vs.data.id === 'string')
-        return vs.data.id;
-    if (typeof vs === 'string')
-        return vs;
-    throw new Error('Unable to determine vector store id from create response: ' + JSON.stringify(vs));
+    const vs = await openai.vectorStores.create({ name });
+
+    if (!vs || typeof vs.id !== 'string') {
+        throw new Error('vectorStores.create did not return a valid id');
+    }
+
+    return vs.id; 
 }
 
+function normalizeVectorStoreId(vs) {
+    if (!vs) 
+        return null;
+    if (typeof vs === 'string') 
+        return vs;
+    if (vs.id && typeof vs.id === 'string') 
+        return vs.id;
+    if (vs.data?.id && typeof vs.data.id === 'string') 
+        return vs.data.id;
 
-async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) { //upload files
-    const fileIDs = [];
-    for (const f of filePaths) {
-        const file = await openai.files.create({file: fs.createReadStream(f),
-            purpose: 'assistants'});
-        fileIDs.push(file.id); //Attach to Vector Store
+    throw new Error('Invalid vector store id: ' + JSON.stringify(vs));
+}
+
+async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) {
+
+    const vsID = normalizeVectorStoreId(vectorStoreID);
+
+    if (typeof vsID !== 'string') {
+        throw new Error("Vector Store ID is not a string: " + JSON.stringify(vsID));
     }
-    await openai.vectorStores.files.create({vector_store_id: vectorStoreID,
-         file_ids: fileIDs});
 
+    console.log("Attaching to vector store:", vsID);
+
+    const fileIDs = [];
+
+    for (const f of filePaths) {
+        const file = await openai.files.create({
+            file: fs.createReadStream(f),
+            purpose: "assistants",
+        });
+
+        fileIDs.push(file.id);
+    }
+
+    await openai.vectorStores.files.create({
+        vector_store_id: vsID,   
+        file_ids: fileIDs,
+    });
 
     return fileIDs;
 }
 
-
 async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
-    console.log('waitForIndexing received vectorStoreID:', vectorStoreID, 'type:', typeof vectorStoreID);
-    let id = vectorStoreID;
-    if (id && typeof id === 'object') {
-        if (typeof id.id === 'string') id = id.id;
-        else if (id.data && typeof id.data.id === 'string') id = id.data.id;
-        else {
-            console.warn('waitForIndexing: unable to extract id from object, using JSON string.');
-            id = JSON.stringify(id);
-        }
+    if (typeof vectorStoreID !== 'string') {
+        throw new Error('waitForIndexing received non-string id');
     }
+
     const start = Date.now();
     while (Date.now() - start < timeoutMs) {
-        try {
-            const list = await openai.vectorStores.files.list({vector_store_id: id});
-            console.log('vectorStores.files.list response:', list && (list.data || list));
-            const files = list.data  || [];
-            const allProcessed = files.length > 0 && files.every(f => (f.status || '').toLowerCase() === 'processed');
-            if(allProcessed)
-                return true;
-        } catch (err) {
-            console.error('Error listing vector store files:', err.response ? err.response.data : err.message || err);
+        const list = await openai.vectorStores.files.list(vectorStoreID);
+
+        const files = list.data || [];
+        if (files.length > 0 && files.every(f => f.status === 'processed')) {
+            return true;
         }
-        await new Promise(r => setTimeout(r,2000));
+
+        await new Promise(r => setTimeout(r, 2000));
     }
     return false;
 }
 
 
-
 // ~~~ Ask with retrieval (uses vector store) ~~~
 
-async function askWithVectorStore({question, vectorStoreId}) {
-    console.log("ask w vector store. Question: ", question)
-    console.log("vectorStoreId:", vectorStoreId)
+async function askWithVectorStore({ question, vectorStoreId }) {
     try {
-        //create assistant
-        const assistant = await openai.beta.assistants.create({
-            name: "ai FRC bot",
-            instructions: process.env.CHAT_INSTRUCTIONS,
-            tools: [{type: "file_search"}],
-            model: OPENAI_MODEL
-        });
-        // 1. Create a Thread
+        const assistantId = await getAssistantId(); 
+
+        if (!assistantId) {
+            throw new Error('assistantId is null or undefined');
+        }
+
         const thread = await openai.beta.threads.create({
             messages: [
                 { role: 'user', content: question }
             ],
-            // 2. Attach the Vector Store to the Thread
             tool_resources: {
-                "file_search": { "vector_store_ids": [vectorStoreId] }
+                file_search: {
+                    vector_store_ids: [vectorStoreId]
+                }
             }
         });
 
-        // 3. Run the Thread using an Assistant (you'll need an Assistant ID)
-        // If you don't have one, you can create a temporary one or use a static ID
-        console.log("gonna error?")
         const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-            assistant_id: assistant.id, 
-            tools: [{ type: "file_search" }],
-            instructions: CHAT_INSTRUCTIONS
+            assistant_id: assistantId
         });
 
-        console.log("worked")
-
-        if (run.status === 'completed') {
-            const messages = await openai.beta.threads.messages.list(thread.id);
-            // The latest message from the assistant
-            return messages.data[0].content[0].text.value;
+        if (run.status !== 'completed') {
+            throw new Error(`Run failed with status: ${run.status}`);
         }
-        
-        return null;
+
+        const messages = await openai.beta.threads.messages.list(thread.id);
+        const assistantMsg = messages.data.find(m => m.role === 'assistant');
+
+        return assistantMsg?.content
+            ?.filter(c => c.type === 'output_text').map(c => c.text.value).join('\n') || null;
+
     } catch (err) {
         console.error('askWithVectorStore error:', err);
         return null;
     }
 }
 
-
+    
 function formatMatchLabel(m) {
     const level = (m.comp_level || '').toLowerCase();
-
-
     switch (level) {
         case 'qm':
             return `Qualification Match #${m.match_number}`;
@@ -390,7 +429,8 @@ async function localRetrieveEvent(eventKey, question) {
         // Prefer finals/ playoff matches if present
         const finals = rows.filter(r => (r.comp_level || '').toLowerCase().startsWith('f'));
         const sample = (finals.length ? finals : rows).slice(-5);
-        if (!sample || sample.length === 0) return null;
+        if (!sample || sample.length === 0) 
+            return null;
         const lines = sample.map(m => {
             const rteams = (m.alliances && m.alliances.red && m.alliances.red.teams) ? m.alliances.red.teams.join(', ') : '';
             const bteams = (m.alliances && m.alliances.blue && m.alliances.blue.teams) ? m.alliances.blue.teams.join(', ') : '';
@@ -406,7 +446,6 @@ async function localRetrieveEvent(eventKey, question) {
         return null;
     }
 }
-
 
 
 // ~~~ pit scouting data ~~~
@@ -462,7 +501,7 @@ process.on('SIGTERM', () => {
 }
 
 function getPitTeamPath(season, teamKey) {
-    return path.join(PIT_DIR, String(season), `${teamKey}.json`);
+    return path.join(PIT_SCOUTING_DIR, String(season), `${teamKey}.json`);
 }
 
 async function uploadPitFile(season, teamKey) {
@@ -475,7 +514,6 @@ async function uploadPitFile(season, teamKey) {
         purpose: 'assistants'
     });
 }
-
 
 
 // ~~~ response from ChatGPT ~~~
@@ -576,7 +614,7 @@ new_app.command('/goPitScout', async ({ command, ack, say }) => {
     if (!season || !teamKey)
         return say('Usage: /pit <season> <team> <drivetrain> <auto> <endgame> <notes>');
 
-    const dir = path.join(PIT_DIR, String(season));
+    const dir = path.join(PIT_SCOUTING_DIR, String(season));
     fs.mkdirSync(dir, { recursive: true });
     const file = getPitTeamPath(season, teamKey);
 
@@ -598,7 +636,8 @@ new_app.command('/goPitScout', async ({ command, ack, say }) => {
 new_app.command('/upload', async ({ command, ack, say }) => {
     await ack();
     const eventKey = (command.text || '').trim();
-    if (!eventKey) return say('Usage: /upload <event_key> (e.g., 2025casj)');
+    if (!eventKey) 
+        return say('Usage: /upload <event_key> (e.g., 2025casj)');
     try {
         //await say('Fetching TBA data for' + eventKey + '…');
         await say(`Fetching TBA data for ${eventKey}…`  );
@@ -609,11 +648,13 @@ new_app.command('/upload', async ({ command, ack, say }) => {
         const vsId = await createOrGetVectorStore(`tba-${eventKey}-${Date.now()}`);
         console.log('createOrGetVectorStore returned:', vsId, 'type:', typeof vsId);
 
-        /*for (const f of [paths.eventPath, paths.teamsPath, paths.matchesPath, paths.rankingsPath, paths.metricsPath]) {
-            await openai.files.create({ file: fs.createReadStream(f), purpose: 'assistants' });
-        }*/
-
-        await uploadAndAttachFilesToVectorStore(vsId, [paths.eventPath, paths.teamsPath, paths.matchesPath, paths.rankingsPath, paths.metricsPath]);
+        await uploadAndAttachFilesToVectorStore(vsId, [
+            paths.eventPath,
+            paths.teamsPath,
+            paths.matchesPath,
+            paths.rankingsPath,
+            paths.metricsPath
+        ]);
 
         await say('Indexing files… this can take a moment.');
         const indexed = await waitForIndexing(vsId, 60000);
@@ -626,6 +667,7 @@ new_app.command('/upload', async ({ command, ack, say }) => {
          await say('Upload failed: ' + (e.response ? JSON.stringify(e.response.data) : e.message));
     }
 });
+
 
 (async () => {
     //start your app
@@ -698,9 +740,6 @@ new_app.command('/chat', async ({ command, ack, client }) => {
     let vectorContext = null;
     let pitScoutingContext= null;
 
-    console.log("Eventkey", eventKey)
-    console.log("vsId", vsId)
-
     if (eventKey) {
         const vsId = vectorStoresByEvent.get(eventKey);
         if (vsId) {
@@ -713,26 +752,9 @@ new_app.command('/chat', async ({ command, ack, client }) => {
         }
     }
 
-    /* Season-based pit scouting retrieval
-    const season = new Date().getFullYear(); // adjust if you store season elsewhere
-    if (pitVectorStoresBySeason.has(season)) {
-    try {
-        pitContext = await askWithVectorStore({
-            question,
-            vectorStoreId: pitVectorStoresBySeason.get(season)
-        });
-    } catch (e) {
-        console.error('Pit retrieval error:', e && (e.message || e));
-    }
-    }
-
-
-    // Combine both contexts
-    const combinedContext = [vectorContext, pitContext].filter(Boolean).join('\n\n'); */
-    // Ask model
     const answer = await getChatResponse(
         conversationId, 
-        prompt, 
+        question, 
         eventKey, 
         vectorContext
     );

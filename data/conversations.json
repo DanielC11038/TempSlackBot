@@ -88,11 +88,19 @@
     "messages": [
       {
         "role": "user",
-        "content": "who won this competition?"
+        "content": "hi"
       },
       {
         "role": "assistant",
-        "content": "I couldn't find specific information about the competition winner based on the details provided. To provide an accurate response, I would need to know which specific competition or event you are referring to. Please provide the name or date of the event, and I can assist you further. \n\nCheck my answer."
+        "content": "Hello! How can I assist you today? If you have any questions about FRC teams, matches, events, or statistics, feel free to ask!"
+      },
+      {
+        "role": "user",
+        "content": "semifinal match scores"
+      },
+      {
+        "role": "assistant",
+        "content": "The semifinal match final scores are not available in the information provided. The match scores listed only pertain to specific matches but do not include any semifinal match results. \n\nIf you are looking for specific scores from a particular event or need further details, please specify! Check my answer."
       }
     ]
   },
