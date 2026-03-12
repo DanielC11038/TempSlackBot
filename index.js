@@ -4,6 +4,8 @@ const axios = require('axios')
 const OpenAI = require('openai')
 const fs = require('fs')
 const path = require('path')
+//const { generateGraph } = require('./analytics');
+//const { buildDataset } = require('./datasetBuilder');
 
 const new_app = new App( {
     token: process.env.SLACK_BOT_TOKEN,
@@ -25,7 +27,7 @@ new_app.command('/hello', async ({ command, ack, say }) => {
 
 const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to (endpoint)
 const API_KEY = process.env.OPENAIKEY
-const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS || ""
+const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS
 
 //Blue alliance GET functions
 const TBA_KEY = process.env.TBA_KEY;
@@ -287,17 +289,21 @@ function computeTeamMetrics(matches, eventKey) {
 }
 
 
-
-//~~~ OpenAI storage: vector store and uploads ~~~
-
 async function createOrGetVectorStore(name) {
     const vs = await openai.vectorStores.create({ name });
 
-    if (!vs || typeof vs.id !== 'string') {
-        throw new Error('vectorStores.create did not return a valid id');
+    const id =
+        typeof vs === "string" ? vs :
+        vs?.id ||
+        vs?.data?.id ||
+        null;
+
+    if (!id) {
+        console.error("Bad vector store response:", vs);
+        throw new Error("Failed to extract vector store id");
     }
 
-    return vs.id; 
+    return id;
 }
 
 function normalizeVectorStoreId(vs) {
@@ -314,7 +320,6 @@ function normalizeVectorStoreId(vs) {
 }
 
 async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) {
-
     const vsID = normalizeVectorStoreId(vectorStoreID);
 
     if (typeof vsID !== 'string') {
@@ -334,11 +339,14 @@ async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) {
         fileIDs.push(file.id);
     }
 
-    await openai.vectorStores.files.create({
-        vector_store_id: vsID,   
-        file_ids: fileIDs,
-    });
+    if (!fileIDs.length) {
+        throw new Error("No files uploaded, fileIDs empty");
+    }
 
+    for (const fileId of fileIDs) {
+        await openai.vectorStores.files.create( vsID, 
+        { file_id: fileId });
+    }
     return fileIDs;
 }
 
@@ -426,12 +434,12 @@ async function localRetrieveEvent(eventKey, question) {
         const matchesPath = path.join(DATA_DIR, `${eventKey}_matches.json`);
         if (!fs.existsSync(matchesPath)) return null;
         const rows = JSON.parse(fs.readFileSync(matchesPath, 'utf-8')) || [];
-        // Prefer finals/ playoff matches if present
+        /*
         const finals = rows.filter(r => (r.comp_level || '').toLowerCase().startsWith('f'));
-        const sample = (finals.length ? finals : rows).slice(-5);
+        const sample = (finals.length ? finals : rows).slice(-5); 
         if (!sample || sample.length === 0) 
-            return null;
-        const lines = sample.map(m => {
+            return null;*/
+        const lines = rows.map(m => {
             const rteams = (m.alliances && m.alliances.red && m.alliances.red.teams) ? m.alliances.red.teams.join(', ') : '';
             const bteams = (m.alliances && m.alliances.blue && m.alliances.blue.teams) ? m.alliances.blue.teams.join(', ') : '';
             const rscore = m.alliances?.red?.score ?? 'N/A';
@@ -566,7 +574,9 @@ async function getChatResponse(conversationId, prompt, eventKey = null, vectorCo
         if (eventFacts)
             usersContentParts.push(`Authoritative Stats:\n${eventFacts}`);
         if (vectorContext)
-            usersContentParts.push(`Additional Context:\n${vectorContext}`);
+            usersContentParts.push(`Additional Context:\n${vectorContext}`);    
+
+        console.log("vectorContext:", vectorContext); //debug
        
         usersContentParts.push(`Question:\n${prompt}`);
         messages.push(...convo.messages); //add conversation history
@@ -577,7 +587,7 @@ async function getChatResponse(conversationId, prompt, eventKey = null, vectorCo
             {
                 model: OPENAI_MODEL,
                 messages: messages,
-                max_tokens: 500, //limit response length
+                max_tokens: 1250, //limit response length
             },
             {
                 headers: {
