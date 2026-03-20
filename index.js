@@ -25,8 +25,8 @@ new_app.command('/hello', async ({ command, ack, say }) => {
     await say(`Hello <@${command.user_id}>`)
 })
 
-const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to (endpoint)
-const API_KEY = process.env.OPENAIKEY
+//const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to (endpoint)
+//const API_KEY = process.env.OPENAIKEY
 const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS
 
 //Blue alliance GET functions
@@ -205,6 +205,9 @@ async function buildTBAFiles(eventKey) {
     writeJSON(eventPath, event);
     writeJSON(teamsPath, teams);
     writeJSON(rankingsPath, rankings);
+        const Rankings1 = normalizeRankings(eventkey, rankings);
+        const normalizedRankingsPath = path.join(DATA_DIR,`${eventKey}_rankings_normalized.json`);
+    writeJSON(normalizedRankingsPath, normalizedRankings);
 
     const matchRows = matches.map(m => ({
         match_key: m.key,
@@ -369,49 +372,41 @@ async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
     return false;
 }
 
-
-// ~~~ Ask with retrieval (uses vector store) ~~~
-
 async function askWithVectorStore({ question, vectorStoreId }) {
-    try {
-        const assistantId = await getAssistantId(); 
+  const assistantId = await getAssistantId();
 
-        if (!assistantId) {
-            throw new Error('assistantId is null or undefined');
-        }
-
-        const thread = await openai.beta.threads.create({
-            messages: [
-                { role: 'user', content: question }
-            ],
-            tool_resources: {
-                file_search: {
-                    vector_store_ids: [vectorStoreId]
-                }
-            }
-        });
-
-        const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
-            assistant_id: assistantId
-        });
-
-        if (run.status !== 'completed') {
-            throw new Error(`Run failed with status: ${run.status}`);
-        }
-
-        const messages = await openai.beta.threads.messages.list(thread.id);
-        const assistantMsg = messages.data.find(m => m.role === 'assistant');
-
-        return assistantMsg?.content
-            ?.filter(c => c.type === 'output_text').map(c => c.text.value).join('\n') || null;
-
-    } catch (err) {
-        console.error('askWithVectorStore error:', err);
-        return null;
+  const thread = await openai.beta.threads.create({
+    messages: [
+      {
+        role: "user",
+        content: question
+      }
+    ],
+    tool_resources: {
+      file_search: {
+        vector_store_ids: [vectorStoreId]
+      }
     }
+  });
+
+  const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
+    assistant_id: assistantId,
+    instructions: process.env.CHAT_INSTRUCTIONS,
+  });
+
+  if (run.status !== "completed") {
+    throw new Error(`Assistant run failed: ${run.status}`);
+  }
+
+  const messages = await openai.beta.threads.messages.list(thread.id);
+
+  const answer = messages.data.filter(m => m.role === "assistant").map(m =>
+      m.content.map(c => c.text?.value || "").join("")
+    ).join("\n");
+
+  return answer || "No answer generated.";
 }
 
-    
 function formatMatchLabel(m) {
     const level = (m.comp_level || '').toLowerCase();
     switch (level) {
@@ -425,33 +420,6 @@ function formatMatchLabel(m) {
             return `Final – Match ${m.match_number}`;
         default:
             return `Match #${m.match_number || 'N/A'}`;
-    }
-}
-
-// Local retrieval fallback when Responses API tool_resources is unsupported
-async function localRetrieveEvent(eventKey, question) {
-    try {
-        const matchesPath = path.join(DATA_DIR, `${eventKey}_matches.json`);
-        if (!fs.existsSync(matchesPath)) return null;
-        const rows = JSON.parse(fs.readFileSync(matchesPath, 'utf-8')) || [];
-        /*
-        const finals = rows.filter(r => (r.comp_level || '').toLowerCase().startsWith('f'));
-        const sample = (finals.length ? finals : rows).slice(-5); 
-        if (!sample || sample.length === 0) 
-            return null;*/
-        const lines = rows.map(m => {
-            const rteams = (m.alliances && m.alliances.red && m.alliances.red.teams) ? m.alliances.red.teams.join(', ') : '';
-            const bteams = (m.alliances && m.alliances.blue && m.alliances.blue.teams) ? m.alliances.blue.teams.join(', ') : '';
-            const rscore = m.alliances?.red?.score ?? 'N/A';
-            const bscore = m.alliances?.blue?.score ?? 'N/A';
-            //const mk = m.match_key || `${m.comp_level || ''} ${m.match_number || ''}`;
-            const mk = formatMatchLabel(m);
-            return `Match ${mk}: Red(${rteams}) ${rscore} vs Blue(${bteams}) ${bscore}`;
-        });
-        return lines.join('\n');
-    } catch (e) {
-        console.error('localRetrieveEvent error:', e && e.message || e);
-        return null;
     }
 }
 
@@ -544,73 +512,26 @@ function getEventFacts(eventKey) {
     ).join('\n');
 }
 
+//organize data about matches, teams, and events into a readable format for ChatGPT to answer questions about
+function normalizeRankings(eventKey, rankings) {
+    if (!rankings || !Array.isArray(rankings.rankings)) return [];
 
-async function getChatResponse(conversationId, prompt, eventKey = null, vectorContext = null) {
-    try {
-        //console.log("sending prompt to chatgpt") //debug
-        let convo = conversations.get(conversationId);
+    return rankings.rankings.map(r => ({
+        team_key: r.team_key,
+        rank: r.rank,
+        record: r.record || null,
+        played: r.matches_played || null,
 
-        if (!convo) {
-            convo = {
-                eventKey,
-                messages: []
-            };
-            conversations.set(conversationId, convo);
-        }
+        // Explicit numeric fields (2024–2026 style)
+        total_rp: r.sort_orders?.[0] ?? null,
+        avg_rp: r.sort_orders?.[1] ?? null,
+        avg_match_score: r.sort_orders?.[2] ?? null,
+        avg_auto: r.sort_orders?.[3] ?? null,
+        avg_barge: r.sort_orders?.[4] ?? null,
 
-        const messages = [];
-        if(CHAT_INSTRUCTIONS !== undefined && CHAT_INSTRUCTIONS.length > 0) {
-            messages.push({ role: "system", content: CHAT_INSTRUCTIONS });
-        }
- 
-        // Retrieve hard facts if eventKey exists
-        let eventFacts = "";
-        if (eventKey) {
-            eventFacts = getEventFacts(eventKey);
-        }
-
-        // Build user message combining hard facts and vector store context
-        const usersContentParts = [];
-        if (eventFacts)
-            usersContentParts.push(`Authoritative Stats:\n${eventFacts}`);
-        if (vectorContext)
-            usersContentParts.push(`Additional Context:\n${vectorContext}`);    
-
-        console.log("vectorContext:", vectorContext); //debug
-       
-        usersContentParts.push(`Question:\n${prompt}`);
-        messages.push(...convo.messages); //add conversation history
-        messages.push({ role: "user", content: usersContentParts.join('\n\n') }); 
-
-        const response = await axios.post(
-            API_URL, //where axios sends the request
-            {
-                model: OPENAI_MODEL,
-                messages: messages,
-                max_tokens: 1250, //limit response length
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${API_KEY}`, //authenticates request
-                    'Content-Type': 'application/json',
-                },
-            }
-        )
-
-        const answer = response.data.choices[0].message.content || "";
-
-        convo.messages.push({ role: "user", content: prompt });
-        convo.messages.push({ role: "assistant", content: answer });
-
-        return answer;
-
-    } catch (error) {
-        console.error("Error calling ChatGPT API:", error.response ? error.response.data : error.message) //debug
-        return `Error calling ChatGPT API: ${error.response ? JSON.stringify(error.response.data) : error.message}`
-    }
+        dq: r.dq || 0
+  }));
 }
-
-
 
 // ~~~ slack commands ~~~
 
@@ -622,7 +543,7 @@ new_app.command('/goPitScout', async ({ command, ack, say }) => {
     const notes = notesArr.join(' ');
 
     if (!season || !teamKey)
-        return say('Usage: /pit <season> <team> <drivetrain> <auto> <endgame> <notes>');
+        return say('Usage: /pit <season> <team> <drivetrain> <auto> <endgame> <notes>');        
 
     const dir = path.join(PIT_SCOUTING_DIR, String(season));
     fs.mkdirSync(dir, { recursive: true });
@@ -663,7 +584,8 @@ new_app.command('/upload', async ({ command, ack, say }) => {
             paths.teamsPath,
             paths.matchesPath,
             paths.rankingsPath,
-            paths.metricsPath
+            paths.metricsPath,
+            path.join(DATA_DIR, `${eventKey}_rankings_normalized.json`)
         ]);
 
         await say('Indexing files… this can take a moment.');
@@ -746,30 +668,25 @@ new_app.command('/chat', async ({ command, ack, client }) => {
         }
     }
 
-    // If we have a vector store for this event, run a retrieval query
-    let vectorContext = null;
     let pitScoutingContext= null;
+    let answer = "No event context selected.";
 
     if (eventKey) {
-        const vsId = vectorStoresByEvent.get(eventKey);
+    const vsId = vectorStoresByEvent.get(eventKey);
         if (vsId) {
-            try {
-                vectorContext = await askWithVectorStore({ question, vectorStoreId: vsId });
-                console.log('askWithVectorStore returned:', typeof vectorContext === 'string' ? vectorContext.substring(0,200) : vectorContext);
-            } catch (err) {
-                console.error('askWithVectorStore error:', err.response ? err.response.data : err.message || err);
-            }
+            answer = await askWithVectorStore({
+                question,
+                vectorStoreId: vsId
+            });
+        } else {
+            answer = `No vector store found for event ${eventKey}. Try /upload ${eventKey}`;
         }
     }
 
-    const answer = await getChatResponse(
-        conversationId, 
-        question, 
-        eventKey, 
-        vectorContext
-    );
-
-    console.log("ANSWER: ",answer)
+    await client.chat.postMessage({
+        channel: command.channel_id,
+        text: answer || "No response generated."
+    });
 
     await client.views.open({
         trigger_id: command.trigger_id, //calls (triggers) the creation of a modal
@@ -916,42 +833,24 @@ new_app.view('chat_modal', async ({ ack, body, view, client }) => {
         }
     });
 
-
     const eventKey = parsedMeta.eventKey || null;
     const channelId = parsedMeta.channel_id || null;
     const conversationId = parsedMeta.conversationId;
 
-    // perform retrieval using eventKey if present
-    let vectorContext = null;
     let pitContext = null;
+    let answer = "No event context selected.";
 
     if (eventKey) {
-        try {
-            const vsId = vectorStoresByEvent.get(eventKey);
-            if (vsId) {
-                vectorContext = await askWithVectorStore({ question: prompt, vectorStoreId: vsId }).catch(err => {
-                    console.error('askWithVectorStore error in chat_modal:', err && (err.response ? err.response.data : err.message || err));
-                    return null;
-                });
-                console.log("vc:", vectorContext)
-            }
-            if (!vectorContext) {
-                const local = await localRetrieveEvent(eventKey, prompt);
-                if (local) 
-                    vectorContext = local;
-            }
-        } catch (e) {
-            console.error('chat_modal retrieval error:', e && (e.response ? e.response.data : e.message || e));
+        const vsId = vectorStoresByEvent.get(eventKey);
+        if (vsId) {
+            answer = await askWithVectorStore({
+            question: prompt,
+            vectorStoreId: vsId
+            });
+        } else {
+            answer = `No vector store found for event ${eventKey}.`;
         }
     }
-
-    // get answer from model using eventKey and vectorContext
-    const answer = await getChatResponse(
-        conversationId,
-        prompt, 
-        eventKey, 
-        vectorContext
-    );
 
     // declaring the variable question
     const question = prompt;

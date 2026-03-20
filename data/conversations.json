@@ -88,11 +88,11 @@
     "messages": [
       {
         "role": "user",
-        "content": "list the top 10 teams"
+        "content": "who scored the most points in this comp"
       },
       {
         "role": "assistant",
-        "content": "Based on the records and average alliance scores provided, here are the top 10 teams:\n\n1. **Team frc1787**\n   - W/L/T: 16/1/0\n   - Avg Alliance Score: 168.2\n\n2. **Team frc4611**\n   - W/L/T: 13/2/0\n   - Avg Alliance Score: 164.7\n\n3. **Team frc695**\n   - W/L/T: 12/5/0\n   - Avg Alliance Score: 163.6\n\n4. **Team frc3173**\n   - W/L/T: 9/6/0\n   - Avg Alliance Score: 159.3\n\n5. **Team frc4145**\n   - W/L/T: 11/3/0\n   - Avg Alliance Score: 155.6\n\n6. **Team frc2228**\n   - W/L/T: 9/4/0\n   - Avg Alliance Score: 147.8\n\n7. **Team frc4991**\n   - W/L/T: 8/5/0\n   - Avg Alliance Score: 133.3\n\n8. **Team frc2252**\n   - W/L/T: 7/6/0\n   - Avg Alliance Score: 132.8\n\n9. **Team frc1308**\n   - W/L/T: 7/5/0\n   - Avg Alliance Score: 131.1\n\n10. **Team frc3015**\n    - W/L/T: 7/7/0\n    - Avg Alliance Score: 128.0\n\nThese teams are listed in order of their average alliance scores, with ties broken by win-loss records."
+        "content": "The team that scored the most points in this competition was FRC3173, with a total score of **203 points** in the semifinals match against FRC4991."
       }
     ]
   },
