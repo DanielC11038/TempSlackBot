@@ -241,7 +241,7 @@ async function buildTBAFiles(eventKey) {
     const metrics = computeTeamMetrics(matches, eventKey);
     writeJSON(metricsPath, metrics);
 
-    return {eventPath, teamsPath, matchesPath, rankingsPath, metricsPath};
+    return {eventPath, teamsPath, matchesPath, normalizedRankingsPath, metricsPath};
 }
 
 // Derived minimal team metrics (W/L/T + avg alliance score)
@@ -538,7 +538,6 @@ new_app.command('/upload', async ({ command, ack, say }) => {
                 paths.eventPath,
                 paths.teamsPath,
                 paths.matchesPath,
-                paths.rankingsPath,
                 paths.metricsPath,
                 path.join(DATA_DIR, `${eventKey}_rankings_normalized.json`)
             ]);
