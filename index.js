@@ -247,7 +247,7 @@ async function buildTBAFiles(eventKey) {
 // Derived minimal team metrics (W/L/T + avg alliance score)
 function computeTeamMetrics(matches, eventKey) {
     const byTeam = new Map();
-    const get = (k) => byTeam.get(k) || (byTeam.set(k, { w: 0, l: 0, t: 0, total: 0, games: 0 }), byTeam.get(k));
+    const get = (k) => byTeam.get(k) || (byTeam.set(k, { w: 0, l: 0, t: 0, total: 0, games: 0, autonScore: 0 }), byTeam.get(k));
 
     for (const m of matches) {
         const red = m.alliances?.red;
@@ -260,42 +260,45 @@ function computeTeamMetrics(matches, eventKey) {
         const redWon = scored && redscore > bluescore;
         const tie = scored && redscore === bluescore;
         for (const t of red.team_keys || []) {
-            const cur = get(t);
+            const currentTeamStats = get(t);
                 if (scored) {
                     if(tie)
-                        cur.t += 1;
+                        currentTeamStats.t += 1;
                     else if(redWon)
-                        cur.w += 1;
+                        currentTeamStats.w += 1;
                     else
-                        cur.l += 1;
+                        currentTeamStats.l += 1;
                 }
-            cur.games += 1;
-            cur.total += redscore;
-            //byTeam.set(t, cur);
+            currentTeamStats.games += 1;
+            currentTeamStats.total += redscore;
+            currentTeamStats.autonScore += m.score_breakdown?.red?.autoPoints || 0;
         }
         for (const t of blue.team_keys || []) {
-            const cur = get(t);
+            const currentTeamStats = get(t);
             if (scored) {
                 if (tie)
-                    cur.t += 1;
+                    currentTeamStats.t += 1;
                 else if (!redWon)
-                    cur.w += 1;
+                    currentTeamStats.w += 1;
                 else
-                    cur.l += 1;
+                    currentTeamStats.l += 1;
             }
-            cur.games += 1;
-            cur.total += bluescore;
+            currentTeamStats.games += 1;
+            currentTeamStats.total += bluescore;
+            currentTeamStats.autonScore += m.score_breakdown?.blue?.autoPoints || 0;
         }
     }
+
     const out = [];
     for (const [teamKey, T] of byTeam) {  
-        out.push({ team_key: teamKey,
+        out.push({ 
+            team_key: teamKey,
             event_key: eventKey,
             wl: { w: T.w, l: T.l, t: T.t },
             avg_alliance_score: T.games ? T.total / T.games : null 
         });
     }
-   
+
     return out;
 }
 
