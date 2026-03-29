@@ -66,7 +66,7 @@
     "city": "Penfield",
     "country": "USA",
     "key": "frc1405",
-    "name": "The Hoselton Foundation/Xerox Corp/Techwell Consulting/Admar construction equipment & supplies/X-cell Precision/Arrow Electronics/Finger Lakes Tram/Vanteon wireless solutions/FIRST Consulting Inc&The Charles Finney School",
+    "name": "Admar construction equipment & supplies/The Hoselton Foundation/Techwell Consulting/X-cell Precision/Arrow Electronics/ASQ Rochester Section/Xerox Corp/FIRST Consulting Inc/Vanteon wireless solutions/Oaks construction/Ankom/Canandaigua National Bank/Nika Ink Photography/Garlock/Home Depot Penfield/Radax/Ganguly Brothers PLC&The Charles Finney School",
     "nickname": "Finney Falcons",
     "state_prov": "New York",
     "team_number": 1405
@@ -75,7 +75,7 @@
     "city": "Penfield",
     "country": "USA",
     "key": "frc1511",
-    "name": "L3Harris/Capone's Italian Eatery/Lee & Hayes/Dematic&Penfield High School",
+    "name": "L3Harris/Dematic&Penfield High School",
     "nickname": "Rolling Thunder",
     "state_prov": "New York",
     "team_number": 1511
@@ -129,7 +129,7 @@
     "city": "Shaker Heights",
     "country": "USA",
     "key": "frc2399",
-    "name": "Rockwell Automation/Gene Haas Foundation/Weiss and Tor Orthodontics/Unicorn Friends and Families&Hathaway Brown School",
+    "name": "Rockwell Automation/Gene Haas Foundation/Ball/Novelis/Unicorn Friends and Families&Hathaway Brown School",
     "nickname": "The Fighting Unicorns",
     "state_prov": "Ohio",
     "team_number": 2399
@@ -156,7 +156,7 @@
     "city": "Spencerport",
     "country": "USA",
     "key": "frc3015",
-    "name": "Baxter International Foundation/Davison Foundation/Bausch and Lomb/Wegmans/State Farm Insurance/Teacher Geek/Xerox&Spencerport High School",
+    "name": "Baxter International Foundation/Davison Foundation/Bausch and Lomb/Wegmans/State Farm Insurance - Dom Agostini Agency/Teacher Geek/Xerox&Spencerport High School",
     "nickname": "Ranger Robotics",
     "state_prov": "New York",
     "team_number": 3015
@@ -309,7 +309,7 @@
     "city": "Cranberry Township",
     "country": "USA",
     "key": "frc5740",
-    "name": "Penna Flame Industries Inc./Armstrong&North Catholic High School",
+    "name": "North Catholic High School/Penna Flame Industries Inc./Westinghouse&North Catholic High School",
     "nickname": "Trojanators",
     "state_prov": "Pennsylvania",
     "team_number": 5740
@@ -345,7 +345,7 @@
     "city": "Columbus",
     "country": "USA",
     "key": "frc6964",
-    "name": "Apple&Upper Arlington High School",
+    "name": "Apple/TY Fine Furniture/US Navy&Upper Arlington High School",
     "nickname": "BearBots (FRC)",
     "state_prov": "Ohio",
     "team_number": 6964
@@ -363,7 +363,7 @@
     "city": "Santo Domingo",
     "country": "Dominican Republic",
     "key": "frc7717",
-    "name": "Saint Michael's School/Banco Popular Dominicano/Motor Credito/Maria Eugenia Batista Legal/MEB/Ciao Cafetteria/Grupo SID - Induveca/Tipico Bonao/Cia. Luz y Fuerza&St. Michael's School",
+    "name": "Saint Michael's School/Banco Popular Dominicano/Motor Credito/Signmaster/DOMICEN&St. Michael's School",
     "nickname": "Steam Punks",
     "state_prov": "Distrito Nacional",
     "team_number": 7717
@@ -426,7 +426,7 @@
     "city": "Macedonia",
     "country": "USA",
     "key": "frc8713",
-    "name": "Nordonia High School",
+    "name": "Nordonia Hills City Schools/Eaton Corp/Argosy Foundation&Nordonia High School",
     "nickname": "Nordonia Knights",
     "state_prov": "Ohio",
     "team_number": 8713
@@ -490,7 +490,7 @@
     "country": "USA",
     "key": "frc9653",
     "name": "Steubenville High School",
-    "nickname": "O.V.R.T (Ohio Valley Robotics Team)",
+    "nickname": "O.V.R.T.",
     "state_prov": "Ohio",
     "team_number": 9653
   },

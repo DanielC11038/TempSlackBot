@@ -17,7 +17,12 @@ const new_app = new App( {
 // OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENAIKEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o-mini'
-const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+const openai = new OpenAI({
+    apiKey: OPENAI_API_KEY,
+    headers: {
+        "OpenAI-Beta": "assistants=v2"
+    }
+});
 
 //First bot command!
 new_app.command('/hello', async ({ command, ack, say }) => {
@@ -25,8 +30,6 @@ new_app.command('/hello', async ({ command, ack, say }) => {
     await say(`Hello <@${command.user_id}>`)
 })
 
-//const API_URL = 'https://api.openai.com/v1/chat/completions' //defines URL your question goes to (endpoint)
-//const API_KEY = process.env.OPENAIKEY
 const CHAT_INSTRUCTIONS = process.env.CHAT_INSTRUCTIONS
 
 //Blue alliance GET functions
@@ -40,7 +43,24 @@ const vectorStoresByEvent = new Map(); // SIMPLE IN-MEMORY MAPPING: event_key ->
 const VS_MAP_FILE = path.join(DATA_DIR, 'vector_stores.json');
 
 //assistant declaration
+const ASSISTANT_FILE = path.join(DATA_DIR, 'assistant.json');
 let ASSISTANT_ID = null;
+
+function loadAssistantId() {
+    if (!fs.existsSync(ASSISTANT_FILE)) 
+        return;
+    try {
+        const data = JSON.parse(fs.readFileSync(ASSISTANT_FILE, 'utf8'));
+        if (data.id && typeof data.id === 'string') {
+            ASSISTANT_ID = data.id;
+            console.log('Loaded assistant ID:', ASSISTANT_ID);
+        }
+    } catch (e) {
+        console.error('Failed to load assistant ID:', e.message);
+    }
+}
+
+loadAssistantId();
 
 async function getAssistantId() {
     if (ASSISTANT_ID) 
@@ -58,20 +78,10 @@ async function getAssistantId() {
     }
     
     ASSISTANT_ID = assistant.id;
+    fs.writeFileSync(ASSISTANT_FILE, 
+        JSON.stringify({ id: ASSISTANT_ID }, null, 2));
     return ASSISTANT_ID;
 }
-
-const originalVSFilesList = openai.vectorStores.files.list;
-openai.vectorStores.files.list = async function (...args) {
-    console.error('vectorStores.files.list called with:', args);
-    return originalVSFilesList.apply(this, args);
-};
-
-const originalVSFilesCreate = openai.vectorStores.files.create;
-openai.vectorStores.files.create = async function (...args) {
-    console.error('vectorStores.files.create called with:', args);
-    return originalVSFilesCreate.apply(this, args);
-};
 
 
 // ~~~ conversation memory ~~~
@@ -110,7 +120,6 @@ process.on('SIGINT', saveConversations);
 process.on('SIGTERM', saveConversations);
 
 
-
 // ~~~ Blue Alliance data handling and vector store management ~~~
 
 function loadVectorStoreMap() {
@@ -129,7 +138,6 @@ function loadVectorStoreMap() {
     }
 }
 
-
 function saveVectorStoreMap() {
     try {
         const obj = Object.fromEntries(vectorStoresByEvent);
@@ -147,13 +155,15 @@ loadVectorStoreMap();
 process.on('SIGINT', () => {
     try { 
         saveVectorStoreMap();
-    } catch(_){};
+    } 
+    catch(_){};
     process.exit();
 });
 process.on('SIGTERM', () => {
     try { 
         saveVectorStoreMap();
-    } catch(_){};
+    } 
+    catch(_){};
     process.exit();
 });
 
@@ -172,10 +182,9 @@ function buildEventOptions() {
     }
 }
 
-
 async function tba(pathFragment) {
     if(!TBA_KEY) {
-        throw new Error("No Blue Alliance file specified in environment variable BLUEALLIANCEFILE") //no
+        throw new Error("No Blue Alliance API Key specified in environment variable BLUEALLIANCEFILE") //no
     }    
    
     const url = `https://www.thebluealliance.com/api/v3/${pathFragment}`;
@@ -184,11 +193,9 @@ async function tba(pathFragment) {
     return res.data;  
 }
 
-
 function writeJSON(filePath, obj) {
     fs.writeFileSync(filePath, JSON.stringify(obj, null, 2));
 }
-
 
 async function buildTBAFiles(eventKey) {
     const [event, teams, matches, rankings] = await Promise.all([ tba('/event/' + eventKey),
@@ -205,9 +212,9 @@ async function buildTBAFiles(eventKey) {
     writeJSON(eventPath, event);
     writeJSON(teamsPath, teams);
     writeJSON(rankingsPath, rankings);
-        const Rankings1 = normalizeRankings(eventkey, rankings);
+        const Rankings1 = normalizeRankings(eventKey, rankings);
         const normalizedRankingsPath = path.join(DATA_DIR,`${eventKey}_rankings_normalized.json`);
-    writeJSON(normalizedRankingsPath, normalizedRankings);
+    writeJSON(normalizedRankingsPath, Rankings1);
 
     const matchRows = matches.map(m => ({
         match_key: m.key,
@@ -285,26 +292,33 @@ function computeTeamMetrics(matches, eventKey) {
         out.push({ team_key: teamKey,
             event_key: eventKey,
             wl: { w: T.w, l: T.l, t: T.t },
-            avg_alliance_score: T.games ? T.total / T.games : null });
+            avg_alliance_score: T.games ? T.total / T.games : null 
+        });
     }
    
     return out;
 }
 
 
-async function createOrGetVectorStore(name) {
-    const vs = await openai.vectorStores.create({ name });
+async function createOrGetVectorStoreForEvent(eventKey) {
+    if(vectorStoresByEvent.has(eventKey)) {
+        return vectorStoresByEvent.get(eventKey);
+    }
+
+    const vs = await openai.vectorStores.create({ 
+        name: `tba-${eventKey}` });
 
     const id =
         typeof vs === "string" ? vs :
-        vs?.id ||
-        vs?.data?.id ||
-        null;
+        vs?.id || vs?.data?.id || null;
 
     if (!id) {
         console.error("Bad vector store response:", vs);
         throw new Error("Failed to extract vector store id");
     }
+
+    vectorStoresByEvent.set(eventKey, id);
+    saveVectorStoreMap();
 
     return id;
 }
@@ -334,6 +348,7 @@ async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) {
     const fileIDs = [];
 
     for (const f of filePaths) {
+        console.log("About to attach file to vector store:", vectorStoreID);
         const file = await openai.files.create({
             file: fs.createReadStream(f),
             purpose: "assistants",
@@ -350,6 +365,7 @@ async function uploadAndAttachFilesToVectorStore(vectorStoreID, filePaths) {
         await openai.vectorStores.files.create( vsID, 
         { file_id: fileId });
     }
+
     return fileIDs;
 }
 
@@ -371,6 +387,7 @@ async function waitForIndexing(vectorStoreID, timeoutMs = 60000) {
     }
     return false;
 }
+
 
 async function askWithVectorStore({ question, vectorStoreId }) {
   const assistantId = await getAssistantId();
@@ -395,7 +412,15 @@ async function askWithVectorStore({ question, vectorStoreId }) {
   });
 
   if (run.status !== "completed") {
-    throw new Error(`Assistant run failed: ${run.status}`);
+    console.error("Assistant run failed");
+    console.error("Status:", run.status);
+    console.error("Last error:", run.last_error);
+    console.error("Required action:", run.required_action);
+    console.error("Run object:", JSON.stringify(run, null, 2));
+
+    throw new Error(
+        `Assistant run failed: ${run.last_error?.message || run.status}`
+    );
   }
 
   const messages = await openai.beta.threads.messages.list(thread.id);
@@ -405,7 +430,7 @@ async function askWithVectorStore({ question, vectorStoreId }) {
     ).join("\n");
 
   return answer || "No answer generated.";
-}
+}   
 
 function formatMatchLabel(m) {
     const level = (m.comp_level || '').toLowerCase();
@@ -421,74 +446,6 @@ function formatMatchLabel(m) {
         default:
             return `Match #${m.match_number || 'N/A'}`;
     }
-}
-
-
-// ~~~ pit scouting data ~~~
-const PIT_SCOUTING_DIR = path.join(DATA_DIR, 'pitscouting');
-const pitScoutingVectorStoresBySeason = new Map(); // season -> vectorStoreId
-const PIT_VS_MAP_FILE = path.join(DATA_DIR, 'pit_vector_stores.json');
-
-function loadPitVectorStoreMap() {
-    if (fs.existsSync(PIT_VS_MAP_FILE)) {
-        try {
-            const obj = JSON.parse(fs.readFileSync(PIT_VS_MAP_FILE, 'utf8')) || {};
-            for (const [k, v] of Object.entries(obj))
-                pitScoutingVectorStoresBySeason.set(Number(k), v);
-            console.log('Loaded pitScoutingVectorStoresBySeason from', PIT_VS_MAP_FILE);
-        } catch (e) {
-            console.error('Failed loading pit vector store map:', e && e.message || e);
-        }
-    }
-}
-
-
-function savePitVectorStoreMap() {
-    try {
-        const obj = Object.fromEntries(pitScoutingVectorStoresBySeason);
-        fs.writeFileSync(PIT_VS_MAP_FILE, JSON.stringify(obj, null, 2));
-        console.log('Saved pitScoutingVectorStoresBySeason to', PIT_VS_MAP_FILE);
-    } catch (e) {
-        console.error('Failed saving pit vector store map:', e && e.message || e);
-    }
-}
-
-// Call on startup
-loadPitVectorStoreMap();
-process.on('SIGINT', () => {
-    try { savePitVectorStoreMap();
-    } catch(_){};
-});
-process.on('SIGTERM', () => {
-    try { savePitVectorStoreMap();
-    } catch(_){};
- });
-
-
- async function getOrCreatePitVectorStore(season) {
-    if (pitVectorStoresBySeason.has(season))
-        return pitVectorStoresBySeason.get(season);
-
-
-    const vs = await openai.vectorStores.create({ name: `pit-${season}` });
-    const id = vs.id || (vs.data && vs.data.id);
-    pitVectorStoresBySeason.set(season, id);
-    return id;
-}
-
-function getPitTeamPath(season, teamKey) {
-    return path.join(PIT_SCOUTING_DIR, String(season), `${teamKey}.json`);
-}
-
-async function uploadPitFile(season, teamKey) {
-    const filePath = getPitTeamPath(season, teamKey);
-    if (!fs.existsSync(filePath)) return;
-
-    const vsId = await getOrCreatePitVectorStore(season);
-    await openai.files.create({
-        file: fs.createReadStream(filePath),
-        purpose: 'assistants'
-    });
 }
 
 
@@ -522,50 +479,44 @@ function normalizeRankings(eventKey, rankings) {
         record: r.record || null,
         played: r.matches_played || null,
 
-        // Explicit numeric fields (2024–2026 style)
         total_rp: r.sort_orders?.[0] ?? null,
         avg_rp: r.sort_orders?.[1] ?? null,
-        avg_match_score: r.sort_orders?.[2] ?? null,
-        avg_auto: r.sort_orders?.[3] ?? null,
-        avg_barge: r.sort_orders?.[4] ?? null,
+
+        official_avg_match_score: r.sort_orders?.[2] ?? null,
+        official_avg_auto: r.sort_orders?.[3] ?? null,
+        official_avg_barge: r.sort_orders?.[4] ?? null,
 
         dq: r.dq || 0
   }));
 }
 
+async function deleteVectorStoresForEvent(eventKey) {
+    const prefix = `tba-${eventKey}`;
+
+    const stores = await openai.vectorStores.list();
+    const toDelete = stores.data.filter(vs =>
+        typeof vs.name === 'string' && vs.name.startsWith(prefix)
+    );
+
+    for (const vs of toDelete) {
+        console.log(`Deleting vector store ${vs.id} (${vs.name})`);
+        await openai.vectorStores.delete(vs.id);
+    }
+
+    // also clean your local map
+    vectorStoresByEvent.delete(eventKey);
+    saveVectorStoreMap();
+
+    return toDelete.length;
+}
+
+
 // ~~~ slack commands ~~~
-
-// /pit 2026 frc254 swerve "2-3 piece auto" "7s climb" "Strong under defense"
-new_app.command('/goPitScout', async ({ command, ack, say }) => {
-    await ack();
-
-    const [season, teamKey, drivetrain, auto, endgame, ...notesArr] = command.text.split(' ');
-    const notes = notesArr.join(' ');
-
-    if (!season || !teamKey)
-        return say('Usage: /pit <season> <team> <drivetrain> <auto> <endgame> <notes>');        
-
-    const dir = path.join(PIT_SCOUTING_DIR, String(season));
-    fs.mkdirSync(dir, { recursive: true });
-    const file = getPitTeamPath(season, teamKey);
-
-    writeJSON(file, {
-        team_key: teamKey,
-        season: Number(season),
-        drivetrain,
-        autonomous: auto,
-        endgame,
-        notes
-    });
-
-    await uploadPitFile(season, teamKey);
-    await say(`Saved pit scouting for ${teamKey} (${season})`);
-});
-
 
 // Upload Blue Alliance data to OpenAI storage and create a vector store // Usage: /upload 2025casj
 new_app.command('/upload', async ({ command, ack, say }) => {
     await ack();
+    
     const eventKey = (command.text || '').trim();
     if (!eventKey) 
         return say('Usage: /upload <event_key> (e.g., 2025casj)');
@@ -576,17 +527,24 @@ new_app.command('/upload', async ({ command, ack, say }) => {
         const paths = await buildTBAFiles(eventKey);
 
         await say('Creating vector store and uploading files to OpenAI…');
-        const vsId = await createOrGetVectorStore(`tba-${eventKey}-${Date.now()}`);
-        console.log('createOrGetVectorStore returned:', vsId, 'type:', typeof vsId);
+        const vsId = await createOrGetVectorStoreForEvent(eventKey);
+        console.log('createOrGetVectorStoreForEvent returned:', vsId, 'type:', typeof vsId);
 
-        await uploadAndAttachFilesToVectorStore(vsId, [
-            paths.eventPath,
-            paths.teamsPath,
-            paths.matchesPath,
-            paths.rankingsPath,
-            paths.metricsPath,
-            path.join(DATA_DIR, `${eventKey}_rankings_normalized.json`)
-        ]);
+        const existingVS = await openai.vectorStores.files.list(vsId); 
+        if (!existingVS.data || existingVS.data.length === 0) {
+            await say('Uploading files to vector store…');
+
+            await uploadAndAttachFilesToVectorStore(vsId, [
+                paths.eventPath,
+                paths.teamsPath,
+                paths.matchesPath,
+                paths.rankingsPath,
+                paths.metricsPath,
+                path.join(DATA_DIR, `${eventKey}_rankings_normalized.json`)
+            ]);
+        } else {
+            await say(`Vector Store already has files -- skipping upload. (${existingVS.data.length} files attached)`);
+        }
 
         await say('Indexing files… this can take a moment.');
         const indexed = await waitForIndexing(vsId, 60000);
@@ -600,12 +558,111 @@ new_app.command('/upload', async ({ command, ack, say }) => {
     }
 });
 
+new_app.command('/delete', async ({ command, ack, client }) => {
+    await ack();
+
+    const eventKey = command.text.trim();
+    if (!eventKey) {
+        await client.chat.postEphemeral({
+            channel: command.channel_id,
+            user: command.user_id,
+            text: 'Usage: /delete <eventKey>'
+        });
+        return;
+    }
+
+    await client.views.open({
+        trigger_id: command.trigger_id,
+        view: {
+            type: 'modal',
+            callback_id: 'reset_event_modal',
+            title: { type: 'plain_text', text: 'Confirm Reset' },
+            private_metadata: JSON.stringify({ eventKey }),
+            close: { type: 'plain_text', text: 'Cancel' },
+            blocks: [
+                {
+                    type: 'section',
+                    text: {
+                        type: 'mrkdwn',
+                        text: `⚠️ *This will delete all vector stores for* \`${eventKey}\`.`
+                    }
+                },
+                {
+                    type: 'actions',
+                    elements: [
+                        {
+                            type: 'button',
+                            text: { type: 'plain_text', text: 'Delete Vector Stores' },
+                            style: 'danger',
+                            action_id: 'confirm_reset_event'
+                        }
+                    ]
+                }
+            ]
+        }
+    });
+});
+
+new_app.action('confirm_reset_event', async ({ ack, body, client }) => {
+    await ack();
+
+    const { eventKey } = JSON.parse(body.view.private_metadata);
+
+    try {
+        const deleted = await deleteVectorStoresForEvent(eventKey);
+
+        if(deleted === 0) {
+            await client.chat.postEphemeral({
+                channel: body.view.private_metadata.channel_id,
+                user: body.user.id,
+                text: `No vector stores found for \`${eventKey}\`.`
+            });
+        }
+
+        await client.views.update({
+            view_id: body.view.id,
+            view: {
+                type: 'modal',
+                title: { type: 'plain_text', text: 'Reset Complete' },
+                close: { type: 'plain_text', text: 'Close' },
+                blocks: [
+                    {
+                        type: 'section',
+                        text: {
+                            type: 'mrkdwn',
+                            text: `Deleted *${deleted}* vector store(s) for \`${eventKey}\`.`
+                        }
+                    }
+                ]
+            }
+        });
+    } catch (e) {
+        console.error('Error deleting vector stores:', e);
+
+        await client.views.update({
+            view_id: body.view.id,
+            view: {
+                type: 'modal',
+                title: { type: 'plain_text', text: 'Error' },
+                close: { type: 'plain_text', text: 'Close' },
+                blocks: [
+                    {
+                        type: 'section',
+                        text: {
+                            type: 'mrkdwn',
+                            text: `Failed to delete vector stores for \`${eventKey}\`.\nCheck logs.`
+                        }
+                    }
+                ]
+            }
+        });
+    }
+});
 
 (async () => {
     //start your app
     await new_app.start(process.env.PORT || 3000)
     console.log(`Bot app is running on port ${process.env.PORT || 3000}!` )
-   // console.log()
 }) ()
 
 
@@ -626,6 +683,12 @@ new_app.command('/chat', async ({ command, ack, client }) => {
 
     const conversationId = `convo_${Date.now()}_${command.user_id}`;
     console.log(conversationId);
+
+    conversations.set(conversationId, { 
+        eventKey, 
+        messages: [ {role: 'user', content: question} ] 
+    });
+    saveConversations();
 
     // If still no eventKey, present a checkbox modal listing stored/local event keys
     if (!eventKey) { 
@@ -668,7 +731,6 @@ new_app.command('/chat', async ({ command, ack, client }) => {
         }
     }
 
-    let pitScoutingContext= null;
     let answer = "No event context selected.";
 
     if (eventKey) {
@@ -682,11 +744,6 @@ new_app.command('/chat', async ({ command, ack, client }) => {
             answer = `No vector store found for event ${eventKey}. Try /upload ${eventKey}`;
         }
     }
-
-    await client.chat.postMessage({
-        channel: command.channel_id,
-        text: answer || "No response generated."
-    });
 
     await client.views.open({
         trigger_id: command.trigger_id, //calls (triggers) the creation of a modal
@@ -748,7 +805,11 @@ new_app.view('choose_event_modal', async ({ ack, body, view, client }) => {
         const channelId = meta.channel_id || null;
         const question = meta.question || '';
 
-        const sel = (view.state && view.state.values && view.state.values.event_select_block && view.state.values.event_select_block.event_checkbox_action && view.state.values.event_select_block.event_checkbox_action.selected_options) || [];
+        const sel = (view.state && 
+            view.state.values && 
+            view.state.values.event_select_block && 
+            view.state.values.event_select_block.event_checkbox_action 
+            && view.state.values.event_select_block.event_checkbox_action.selected_options) || [];
         if (!sel || sel.length === 0) {
             // Update modal to show an error message
             await ack({
@@ -837,7 +898,6 @@ new_app.view('chat_modal', async ({ ack, body, view, client }) => {
     const channelId = parsedMeta.channel_id || null;
     const conversationId = parsedMeta.conversationId;
 
-    let pitContext = null;
     let answer = "No event context selected.";
 
     if (eventKey) {

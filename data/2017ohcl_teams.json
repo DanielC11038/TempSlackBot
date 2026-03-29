@@ -12,7 +12,7 @@
     "city": "Webster",
     "country": "USA",
     "key": "frc1126",
-    "name": "Webster Central School District/Xerox Corporation/Bosch&Schroeder High School&Webster Thomas High School",
+    "name": "Webster Central School District/Xerox Corporation/ACCEDE/Gene Haas Foundation/L3Harris&Schroeder High School&Webster Thomas High School",
     "nickname": "SPARX",
     "state_prov": "New York",
     "team_number": 1126
@@ -120,7 +120,7 @@
     "city": "Warren",
     "country": "USA",
     "key": "frc2010",
-    "name": "Aptiv Foundation/Cleveland Communications/Ohio Edison/FirstEnergy/Adam and Tina Miller&Champion High School",
+    "name": "Aptiv Foundation/Cleveland Communications&Champion High School",
     "nickname": "The Lightning Bots",
     "state_prov": "Ohio",
     "team_number": 2010
@@ -156,7 +156,7 @@
     "city": "Rochester",
     "country": "USA",
     "key": "frc2340",
-    "name": "Xerox Corporation/Umai Revolving Sushi/ASQ Rochester/Our Lady of Mercy School for Young Women&Our Lady of Mercy School",
+    "name": "Umai Revolving Sushi/Our Lady of Mercy School for Young Women/Curbelll Plastics/Our Lady of Mercy School for Young Women and the Board of Trustees/JG Engineering&Our Lady of Mercy School",
     "nickname": "Mercy Robotics-Xcentrics",
     "state_prov": "New York",
     "team_number": 2340
@@ -165,7 +165,7 @@
     "city": "Shaker Heights",
     "country": "USA",
     "key": "frc2399",
-    "name": "Rockwell Automation/Gene Haas Foundation/Weiss and Tor Orthodontics/Unicorn Friends and Families&Hathaway Brown School",
+    "name": "Rockwell Automation/Gene Haas Foundation/Ball/Novelis/Unicorn Friends and Families&Hathaway Brown School",
     "nickname": "The Fighting Unicorns",
     "state_prov": "Ohio",
     "team_number": 2399
@@ -219,7 +219,7 @@
     "city": "Spencerport",
     "country": "USA",
     "key": "frc3015",
-    "name": "Baxter International Foundation/Davison Foundation/Bausch and Lomb/Wegmans/State Farm Insurance/Teacher Geek/Xerox&Spencerport High School",
+    "name": "Baxter International Foundation/Davison Foundation/Bausch and Lomb/Wegmans/State Farm Insurance - Dom Agostini Agency/Teacher Geek/Xerox&Spencerport High School",
     "nickname": "Ranger Robotics",
     "state_prov": "New York",
     "team_number": 3015
@@ -237,7 +237,7 @@
     "city": "Austintown",
     "country": "USA",
     "key": "frc3193",
-    "name": "Aptiv Foundation/Timken Foundation/The Gene Haas Foundation/DoD STEM/Sheetz&Fitch High School",
+    "name": "Aptiv Foundation/Timken Foundation/The Gene Haas Foundation/DoD STEM/Sheetz/ABB&Fitch High School",
     "nickname": "Falco Tech",
     "state_prov": "Ohio",
     "team_number": 3193
@@ -318,7 +318,7 @@
     "city": "Cincinnati",
     "country": "USA",
     "key": "frc4028",
-    "name": "TREW/Redwood Technology Ventures/Cortex/The Brown Dog Cafe/Beak Squad Community Supporters/JZ Enterprises & Cincinnati Hills Christian Academy",
+    "name": "TREW/GE Aerospace/Redwood Technology Ventures/Cortex/Belcan/Beak Squad Community Supporters/JZ Enterprises&Cincinnati Hills Christian Academy",
     "nickname": "The Beak Squad",
     "state_prov": "Ohio",
     "team_number": 4028
@@ -381,7 +381,7 @@
     "city": "Canonsburg",
     "country": "USA",
     "key": "frc4467",
-    "name": "Braskem/EQT/The Armory Youth Center/Zamagias Properties/84 Four Lumber/ECI/HRT Solutions/BAP/Washington County Manufacturers Association/Remake Learning/Makrinos Plumbing/Angert Foundation&Family/Community",
+    "name": "EQT/Zamagias Properties/ECI/HRT Solutions/BAP/General Dynamics/Washington County Manufacturers Association/Makrinos Plumbing/Angert Foundation&Family/Community",
     "nickname": "Titanium Titans",
     "state_prov": "Pennsylvania",
     "team_number": 4467
@@ -390,7 +390,7 @@
     "city": "Maumee",
     "country": "USA",
     "key": "frc451",
-    "name": "Dana Incorporated/Sylvania STEM Center/Toledo Tool & Die/MAKEsafe Tools/4imprint/Sheetz&Ohio Virtual Academy&Napoleon Junior/Senior High School&Sylvania Northview High School&Toledo Technology Academy High School&Perrysburg High School&Anthony Wayne High School&Explorers Academy of Science and Technology&Home School",
+    "name": "Dana Incorporated/Toledo Tool & Die/Sheetz/North Star BlueScope Steel/A+ Storage Pros/Sylvania Southview High School & Ohio Virtual Academy & Napoleon Junior/Senior High School & Sylvania Northview High School & Perrysburg High School & Anthony Wayne High School & Eastwood I High School & Explorers Academy of Science and Technology & Home School",
     "nickname": "Cat Attack Robotics",
     "state_prov": "Ohio",
     "team_number": 451
@@ -462,7 +462,7 @@
     "city": "New Albany",
     "country": "USA",
     "key": "frc5667",
-    "name": "Meta/AWS/Gene Haas Foundation/New Albany Plain Local School District&New Albany High School",
+    "name": "Axium Packaging/AWS/Gene Haas Foundation/New Albany Plain Local School District/META&New Albany High School",
     "nickname": "The Digital Eagles",
     "state_prov": "Ohio",
     "team_number": 5667
@@ -498,7 +498,7 @@
     "city": "Dayton",
     "country": "USA",
     "key": "frc6032",
-    "name": "DoDSTEM/South Metro Regional Chamber of Commerce/Insignia/Gene Haas Foundation/BAE Systems/Gosiger/Intuitive Foundation&West Carrollton High School",
+    "name": "DoDSTEM/Insignia/South Metro Regional Chamber of Commerce/Gene Haas Foundation/BAE Systems/Gosiger/Intuitive Foundation/Hicswa Community Science&West Carrollton High School",
     "nickname": "Pirate Robotics",
     "state_prov": "Ohio",
     "team_number": 6032
